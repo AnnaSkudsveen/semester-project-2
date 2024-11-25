@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auction House</title>
+    <script type="module" src="/src/app.js"></script>
+</head>
+
+<body>
+    <h1>Create listing</h1>
+    <form name="createListing">
+        <div>
+            <label for="title">Title</label>
+            <input id="title" type="text" name="title" required title="Title of listing" />
+        </div>
+
+        <div>
+            <label for="body">Text</label>
+            <input id="body" type="text" name="body" required title="Write your listing here!" />
+        </div>
+
+        <div>
+            <label for="image">Image</label>
+            <input id="image" type="text" name="image" />
+        </div>
+
+        <button>Create listing</button>
+    </form>
+</body>
+
+</html>
