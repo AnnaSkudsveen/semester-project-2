@@ -18,6 +18,20 @@
     <h1>Update profile</h1>
 
     <form name="updateProfile">
+        <div>
+            <label for="title">Title</label>
+            <input id="title" type="text" name="title" required maxlength="20" title="Edit title of your listing" />
+        </div>
+
+        <div>
+            <label for="body">Text</label>
+            <input id="body" type="text" name="body" required title="Edit the text in your listing" />
+        </div>
+
+        <div>
+            <label for="image">Image</label>
+            <input id="image" type="url" name="image" />
+        </div>
         <button>Update Profile</button>
     </form>
 </body>
