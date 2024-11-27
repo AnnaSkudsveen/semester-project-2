@@ -1,13 +1,83 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="shortcut icon" href="../../../public/favicon/favicon-32x32.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../public/favicon/favicon-16x16.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../public/favicon/android-chrome-192x192.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../public/favicon/android-chrome-512x512.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../public/favicon/apple-touch-icon.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auction House</title>
+  <script type="module" src="/src/js/app.js" defer></script>
+  <script type="module" src="/src/js/api/auth/key.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="./html/profile/">My Profile</a>
+      <button class="loginBtn">Login</button>
+      <button class="registerBtn">Register</button>
+      <a href="./html/listing/create/">Create listing</a>
+    </nav>
+  </header>
+
+  <div class="loginModal">
+    <form name="login">
+      <div>
+        <label for="email">Email</label>
+        <input id="emailLogin" type="email" name="email" required />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="passwordLogin" required />
+      </div>
+
+      <button id="redirectRegister">Register</button>
+      <button>Login</button>
+    </form>
+  </div>
+
+  <div class="registerModal">
+    <form name="register" id="registerForm">
+      <div>
+        <label for="name">Name</label>
+        <input id="nameRegister" type="text" name="name" required maxlength="20" pattern="^[\w]+$"
+          title="Please enter a username using only letters and numbers" />
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input id="emailRegister" type="email" name="email" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
+          title="Please enter a valid noroff.no or stud.noroff.no address" />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="passwordRegister" required minlength="8" />
+      </div>
+
+      <button id="redirectLogin">Login</button>
+      <button id="register">Register</button>
+    </form>
+  </div>
+
+  <section class="carousel">
+
+  </section>
+
+  <section class="listingsSection">
+
+  </section>
+
+  <section class="paginationSection">
+
+  </section>
+
+
+</body>
+
 </html>
