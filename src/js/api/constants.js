@@ -1,6 +1,7 @@
 import { getKey } from "./auth/key.js";
 
 export const API_KEY = "a5cebe50-8176-4f85-b1dc-180e70dfcb04";
+// export const TEST_API_KEY = `${API}`
 
 export const API_BASE = "https://v2.api.noroff.dev";
 
