@@ -26,7 +26,7 @@ export async function login(email, password) {
       const navBar = document.querySelector(".navBar");
 
       navBar.innerHTML += `
-      <a href="/html/profile/?username=${data.data.name}" id="profileLink">My Profile</a>
+      <a href="/html/profile/?user=${data.data.name}" id="profileLink">My Profile</a>
       `;
 
       //TO DO
