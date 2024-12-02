@@ -1,32 +1,43 @@
 import { headers } from "../headers.js";
-export async function updateProfile(username, bio, avatar, banner) {
-  const headersConfig = headers();
-  try {
-    fetch(`${API_SOCIAL_POSTS}/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        bio: `${bio}`,
-        avatar: {
-          url: `${title}`
-        },
-        banner: {
-          url: `${body}`
-        }
-      }),
+import { API_AUCTION_PROFILES } from "../constants.js";
 
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        headers: headers
+export async function updateProfile(username, bio, image, banner) {
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      ...headers()
+    },
+    body: JSON.stringify({
+      bio: `${bio}`,
+      avatar: {
+        url: `${image}`
+      },
+      banner: {
+        url: `${banner}`
       }
     })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        window.location.href = "/index.html";
-      });
+  };
+
+  try {
+    const response = await fetch(
+      `${API_AUCTION_PROFILES}/${username}`,
+      options
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error updating profile:", errorData);
+      throw new Error(`Error ${response.status}: ${errorData.message}`);
+    }
+
+    const data = await response.json();
+    console.log("Profile updated successfully:", data);
+
+    // window.location.href = "/html/profile/";
+    return data;
   } catch (error) {
-    console.error("Error during editing:", error);
-    throw error; // Rethrow the error to handle it in `onRegister`
+    console.error("Error:", error.message);
+    throw error;
   }
 }

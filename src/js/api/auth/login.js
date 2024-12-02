@@ -23,6 +23,12 @@ export async function login(email, password) {
     if (data.data && data.data.accessToken) {
       localStorage.setItem("author", data.data.name);
       localStorage.setItem("bearerToken", data.data.accessToken);
+      
+      const navBar = document.querySelector(".navBar");
+
+      navBar.innerHTML += `
+      <a href="/html/profile/?user=${data.data.name}" id="profileLink">My Profile</a>
+      `;
 
       //TO DO
       //Close login modal using display:none

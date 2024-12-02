@@ -6,12 +6,12 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction House</title>
-    <script type="module" src="/src/app.js"></script>
-    <link rel="shortcut icon" href="../../../public/favicon/favicon-32x32.png" type="image/x-icon">
-    <link rel="shortcut icon" href="../../../public/favicon/favicon-16x16.png" type="image/x-icon">
-    <link rel="shortcut icon" href="../../../public/favicon/android-chrome-192x192.png" type="image/x-icon">
-    <link rel="shortcut icon" href="../../../public/favicon/android-chrome-512x512.png" type="image/x-icon">
-    <link rel="shortcut icon" href="../../../public/favicon/apple-touch-icon.png" type="image/x-icon">
+    <script type="module" src="/src/js/app.js"></script>
+    <link rel="shortcut icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon/favicon-16x16.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon/android-chrome-192x192.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon/android-chrome-512x512.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon/apple-touch-icon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -19,18 +19,18 @@
 
     <form name="updateProfile">
         <div>
-            <label for="title">Title</label>
-            <input id="title" type="text" name="title" required maxlength="20" title="Edit title of your listing" />
+            <label for="bio">Bio</label>
+            <input id="bio" type="text" name="bio" required maxlength="20" title="Edit title of your listing" />
         </div>
 
         <div>
-            <label for="body">Text</label>
-            <input id="body" type="text" name="body" required title="Edit the text in your listing" />
-        </div>
-
-        <div>
-            <label for="image">Image</label>
+            <label for="image">Profile picture</label>
             <input id="image" type="url" name="image" />
+        </div>
+
+        <div>
+            <label for="banner">Profile banner</label>
+            <input id="banner" type="url" name="banner" />
         </div>
         <button>Update Profile</button>
     </form>
