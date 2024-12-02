@@ -1,6 +1,7 @@
 import { API_AUCTION_PROFILES, API_KEY } from "../../api/constants.js";
-
+import { onUpdateProfile } from "../../ui/profile/update.js";
 const bearerToken = localStorage.getItem("bearerToken");
+
 const user = localStorage.getItem("author");
 const form = document.forms.updateProfile;
 
@@ -26,3 +27,5 @@ async function getProfile(username) {
   }
 }
 getProfile(user);
+
+form.addEventListener("submit", onUpdateProfile);

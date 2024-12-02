@@ -10,4 +10,5 @@ export async function onUpdateProfile(event) {
   const banner = form.banner.value;
 
   updateProfile(username, bio, image, banner);
+  console.log(`onUpdateProfile: Username: ${username}, bio: ${bio}`);
 }
