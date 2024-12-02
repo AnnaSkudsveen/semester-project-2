@@ -1,6 +1,6 @@
 import { onLogin } from "../../ui/auth/login.js";
 import { onRegister } from "../../ui/auth/register.js";
-import { API_SOCIAL_POSTS } from "../../api/constants.js";
+import { API_AUCTION_POSTS } from "../../api/constants.js";
 import { headers } from "../../api/headers.js";
 
 const loginForm = document.forms.login;
@@ -13,7 +13,7 @@ registerForm.addEventListener("submit", onRegister);
 
 const showAllPosts = async function () {
   try {
-    const response = await fetch(`${API_SOCIAL_POSTS}`, {
+    const response = await fetch(`${API_AUCTION_POSTS}`, {
       method: "GET",
       headers: { "Content-Type": "application/json", ...headers }
     });
