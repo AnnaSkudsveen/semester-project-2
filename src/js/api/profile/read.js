@@ -2,7 +2,6 @@ import { API_KEY, API_SOCIAL_PROFILES } from "../constants.js";
 
 export async function readProfile(username) {
   const bearerToken = localStorage.getItem("bearerToken");
-  const profileSection = document.querySelector(".profileSection");
 
   if (bearerToken) {
     const options = {
@@ -20,16 +19,19 @@ export async function readProfile(username) {
     authGuard();
   }
 
-  function showProfile(profileData) {
-    profileSection.innerHTML += `
-      <div>
-      <img src="${profileData.banner.url}" alt="Profile banner">
-      <img src="${profileData.avatar.url}" alt="Profile picture">
-      <h2>${profileData.name}</h2>
-      <p>${profileData.bio}</p>
-      </div>
-        `;
-  }
+  // showProfile(data.data);
+}
+
+export function showProfile(profileData) {
+  const profileSection = document.querySelector(".profileSection");
+  profileSection.innerHTML += `
+    <div>
+    <img src="${profileData.banner.url}" alt="Profile banner">
+    <img src="${profileData.avatar.url}" alt="Profile picture">
+    <h2>${profileData.name}</h2>
+    <p>${profileData.bio}</p>
+    </div>
+      `;
 }
 
 export async function readProfiles(limit, page) {}

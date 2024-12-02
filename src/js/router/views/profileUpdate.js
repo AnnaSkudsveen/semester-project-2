@@ -1,9 +1,25 @@
-import { updateProfile } from "../../api/profile/update.js";
+import { API_SOCIAL_PROFILES, API_KEY } from "../../api/constants.js";
 
-export async function onUpdateProfile(event) {
-  event.preventDefault();
+const bearerToken = localStorage.getItem("bearerToken");
+const user = localStorage.getItem("author");
+const form = document.forms.updateProfile;
 
-  const form = document.form.bio;
+async function getProfile(username) {
+  if (!bearerToken) {
+    console.log("Try logging in");
+  } else {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+        "X-Noroff-API-Key": `${API_KEY}`
+      }
+    };
 
-  updateProfile(username, avatar, banner);
+    const response = await fetch(`${API_SOCIAL_PROFILES}/${username}`, options);
+    const data = await response.json();
+    form.bio.value = data.data.bio || "";
+    form.image.value = data.data.avatar.url || "";
+    form.banner.value = data.data.banner.url || "";
+  }
 }
+getProfile(user);
