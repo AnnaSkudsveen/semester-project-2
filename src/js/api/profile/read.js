@@ -1,14 +1,16 @@
-import { API_KEY, API_AUCTION_PROFILES } from "../constants.js";
+import { API_AUCTION_PROFILES } from "../constants.js";
+import { headers } from "../headers.js";
 
 export async function readProfile(username) {
   const bearerToken = localStorage.getItem("bearerToken");
 
-  if (bearerToken) {
+  if (!bearerToken) {
+    console.log("Try logging in");
+  } else {
     const options = {
       headers: {
-        //TO DO FIX AUTH HEADERS!
-        Authorization: `Bearer ${bearerToken}`,
-        "X-Noroff-API-Key": `${API_KEY}`
+        "Content-Type": "application/json",
+        ...headers()
       }
     };
 
@@ -18,8 +20,6 @@ export async function readProfile(username) {
     );
     const data = await response.json();
     showProfile(data.data);
-  } else {
-    authGuard();
   }
 
   // showProfile(data.data);
