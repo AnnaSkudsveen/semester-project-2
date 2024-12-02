@@ -1,9 +1,10 @@
 import { headers } from "../headers.js";
+import { API_AUCTION_POSTS } from "../constants.js";
 
 export async function updateProfile(username, bio, image, banner) {
   const headersConfig = headers();
   try {
-    fetch(`${API_SOCIAL_POSTS}/${username}`, {
+    fetch(`${API_AUCTION_POSTS}/${username}`, {
       method: "PUT",
       body: JSON.stringify({
         bio: `${bio}`,

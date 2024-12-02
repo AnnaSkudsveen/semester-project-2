@@ -1,4 +1,4 @@
-import { API_KEY, API_SOCIAL_PROFILES } from "../constants.js";
+import { API_KEY, API_AUCTION_PROFILES } from "../constants.js";
 
 export async function readProfile(username) {
   const bearerToken = localStorage.getItem("bearerToken");
@@ -12,7 +12,10 @@ export async function readProfile(username) {
       }
     };
 
-    const response = await fetch(`${API_SOCIAL_PROFILES}/${username}`, options);
+    const response = await fetch(
+      `${API_AUCTION_PROFILES}/${username}`,
+      options
+    );
     const data = await response.json();
     showProfile(data.data);
   } else {

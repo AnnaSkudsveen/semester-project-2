@@ -1,4 +1,4 @@
-import { API_SOCIAL_PROFILES, API_KEY } from "../../api/constants.js";
+import { API_AUCTION_PROFILES, API_KEY } from "../../api/constants.js";
 
 const bearerToken = localStorage.getItem("bearerToken");
 const user = localStorage.getItem("author");
@@ -15,7 +15,10 @@ async function getProfile(username) {
       }
     };
 
-    const response = await fetch(`${API_SOCIAL_PROFILES}/${username}`, options);
+    const response = await fetch(
+      `${API_AUCTION_PROFILES}/${username}`,
+      options
+    );
     const data = await response.json();
     form.bio.value = data.data.bio || "";
     form.image.value = data.data.avatar.url || "";
