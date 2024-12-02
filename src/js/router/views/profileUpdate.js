@@ -1,4 +1,5 @@
-import { API_AUCTION_PROFILES, API_KEY } from "../../api/constants.js";
+import { API_AUCTION_PROFILES } from "../../api/constants.js";
+import { headers } from "../../api/headers.js";
 import { onUpdateProfile } from "../../ui/profile/update.js";
 const bearerToken = localStorage.getItem("bearerToken");
 
@@ -11,8 +12,8 @@ async function getProfile(username) {
   } else {
     const options = {
       headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        "X-Noroff-API-Key": `${API_KEY}`
+        "Content-type": "application/json; charset=UTF-8",
+        ...headers()
       }
     };
 
