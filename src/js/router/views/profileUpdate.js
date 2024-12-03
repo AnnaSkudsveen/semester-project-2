@@ -11,6 +11,7 @@ async function getProfile(username) {
     console.log("Try logging in");
   } else {
     const options = {
+      method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         ...headers()
@@ -22,6 +23,7 @@ async function getProfile(username) {
       options
     );
     const data = await response.json();
+
     form.bio.value = data.data.bio || "";
     form.image.value = data.data.avatar.url || "";
     form.banner.value = data.data.banner.url || "";

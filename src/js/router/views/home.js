@@ -12,12 +12,16 @@ const listingsSection = document.querySelector(".listingsSection");
 loginForm.addEventListener("submit", onLogin);
 registerForm.addEventListener("submit", onRegister);
 
-const showAllPosts = async function () {
+async function getAllPosts() {
   try {
-    const response = await fetch(`${API_AUCTION_POSTS}`, {
+    const options = {
       method: "GET",
-      headers: { "Content-Type": "application/json", ...headers }
-    });
+      headers: {
+        "Content-Type": "application/json",
+        ...headers()
+      }
+    };
+    const response = await fetch(`${API_AUCTION_POSTS}`, options);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -27,7 +31,7 @@ const showAllPosts = async function () {
   } catch (error) {
     console.error("An error has occurred:", error.message);
   }
-};
+}
 
 if (bearerToken) {
   const navBar = document.querySelector(".navBar");
@@ -39,10 +43,12 @@ if (bearerToken) {
   loginForm.style.display = "none";
   registerForm.style.display = "none";
 
-  showAllPosts();
+  getAllPosts();
 }
 
 function showPosts(postData) {
+  listingsSection.innerHTML = "";
+
   for (let i = 0; i < postData.data.length; i++) {
     listingsSection.innerHTML += `
       <a class="post-link-card" href="html/listing/?id=${postData.data[i].id}">
