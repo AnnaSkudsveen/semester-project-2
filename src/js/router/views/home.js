@@ -44,8 +44,8 @@ if (bearerToken) {
 function showPosts(postData) {
   for (let i = 0; i < postData.data.length; i++) {
     listingsSection.innerHTML += `
-      <a class="post-link-card" href="/post/edit.html?id=${postData.data[i].id}">
-      <section class="blog-post">
+      <a class="post-link-card" href="html/listing/?id=${postData.data[i].id}">
+      <section class="listing-post">
         <div class="img-header">
           <img src="${postData.data[i].media.url}" alt="">
           <h2>${postData.data[i].title}</h2>
