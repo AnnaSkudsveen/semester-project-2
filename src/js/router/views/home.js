@@ -12,7 +12,7 @@ const listingsSection = document.querySelector(".listingsSection");
 loginForm.addEventListener("submit", onLogin);
 registerForm.addEventListener("submit", onRegister);
 
-const showAllPosts = async function () {
+async function getAllPosts() {
   try {
     const options = {
       method: "GET",
@@ -31,7 +31,7 @@ const showAllPosts = async function () {
   } catch (error) {
     console.error("An error has occurred:", error.message);
   }
-};
+}
 
 if (bearerToken) {
   const navBar = document.querySelector(".navBar");
@@ -43,7 +43,7 @@ if (bearerToken) {
   loginForm.style.display = "none";
   registerForm.style.display = "none";
 
-  showAllPosts();
+  getAllPosts();
 }
 
 function showPosts(postData) {
