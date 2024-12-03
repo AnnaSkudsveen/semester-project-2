@@ -2,6 +2,7 @@ import { onLogin } from "../../ui/auth/login.js";
 import { onRegister } from "../../ui/auth/register.js";
 import { API_AUCTION_POSTS } from "../../api/constants.js";
 import { headers } from "../../api/headers.js";
+import { showUserCredit } from "./navBar.js";
 
 const loginForm = document.forms.login;
 const registerForm = document.getElementById("registerForm");
@@ -34,7 +35,7 @@ if (bearerToken) {
   navBar.innerHTML += `
     <a href="/html/profile/?user=${username}" id="profileLink">My Profile</a>
     `;
-
+  showUserCredit(username);
   loginForm.style.display = "none";
   registerForm.style.display = "none";
 
