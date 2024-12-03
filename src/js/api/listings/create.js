@@ -10,10 +10,10 @@ export async function createListing(title, media, body, endsAt, tags) {
     },
     body: JSON.stringify({
       title: `${title}`,
-      body: `${body}`,
+      description: `${body}`,
       endsAt: `${endsAt}`,
       tags: [`${tags}`],
-      avatar: {
+      media: {
         url: `${media}`
       }
     })
