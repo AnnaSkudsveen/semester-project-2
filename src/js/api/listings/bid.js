@@ -8,6 +8,8 @@ const listingId = params.get("id");
 console.log(listingId);
 
 export async function bidOnItem(bid) {
+  const bidAmount = Number(bid);
+
   const options = {
     method: "POST",
     headers: {
@@ -15,7 +17,7 @@ export async function bidOnItem(bid) {
       ...headers()
     },
     body: JSON.stringify({
-      amount: bid
+      amount: bidAmount
     })
   };
 
@@ -33,8 +35,8 @@ export async function bidOnItem(bid) {
 
     const data = await response.json();
     console.log("Bid posted successfully:", data);
+    location.reload();
 
-    // window.location.href = "/";
     return data;
   } catch (error) {
     console.error("Error:", error.message);
