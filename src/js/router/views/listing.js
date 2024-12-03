@@ -10,6 +10,7 @@ const params = new URLSearchParams(url.search);
 const listingId = params.get("id");
 const listingSection = document.querySelector(".listingSection");
 const listingImages = document.querySelector(".listingImages");
+const bidsSection = document.querySelector(".bidAmounts");
 
 bidForm.addEventListener("submit", onBidOnItem);
 
@@ -25,7 +26,10 @@ async function showListing(id) {
       }
     };
 
-    const response = await fetch(`${API_AUCTION_POSTS}/${id}`, options);
+    const response = await fetch(
+      `${API_AUCTION_POSTS}/${id}?_bids=true`,
+      options
+    );
     const listingData = await response.json();
 
     listingData.data.media.forEach((mediaItem) => {
@@ -33,6 +37,7 @@ async function showListing(id) {
           <img src="${mediaItem.url}" alt="picture of listed item">
         `;
     });
+
     listingSection.innerHTML = `
     <section class="listing">
           <h2>${listingData.data.title}</h2>
@@ -40,6 +45,13 @@ async function showListing(id) {
           <p>${listingData.data._count.bids}</p>
       </section>
     `;
+
+    listingData.data.bids.forEach((bid) => {
+      bidsSection.innerHTML += `
+      <h4>${bid.bidder.name}</h4>      
+      <p>${bid.amount}</p>
+          `;
+    });
   }
 }
 showListing(listingId);
