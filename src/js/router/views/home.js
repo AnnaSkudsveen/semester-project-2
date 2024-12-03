@@ -14,10 +14,14 @@ registerForm.addEventListener("submit", onRegister);
 
 const showAllPosts = async function () {
   try {
-    const response = await fetch(`${API_AUCTION_POSTS}`, {
+    const options = {
       method: "GET",
-      headers: { "Content-Type": "application/json", ...headers }
-    });
+      headers: {
+        "Content-Type": "application/json",
+        ...headers()
+      }
+    };
+    const response = await fetch(`${API_AUCTION_POSTS}`, options);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -43,6 +47,8 @@ if (bearerToken) {
 }
 
 function showPosts(postData) {
+  listingsSection.innerHTML = "";
+
   for (let i = 0; i < postData.data.length; i++) {
     listingsSection.innerHTML += `
       <a class="post-link-card" href="html/listing/?id=${postData.data[i].id}">
