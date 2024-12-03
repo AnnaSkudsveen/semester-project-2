@@ -33,8 +33,7 @@ export async function updateProfile(username, bio, image, banner) {
 
     const data = await response.json();
     console.log("Profile updated successfully:", data);
-
-    // window.location.href = "/html/profile/";
+    window.location.href = `/html/profile/?user=${username}`;
     return data;
   } catch (error) {
     console.error("Error:", error.message);
