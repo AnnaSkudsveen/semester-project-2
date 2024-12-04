@@ -3,6 +3,11 @@ import { onRegister } from "../../ui/auth/register.js";
 import { API_AUCTION_POSTS } from "../../api/constants.js";
 import { headers } from "../../api/headers.js";
 import { showUserCredit } from "./navBar.js";
+import {
+  paginate,
+  renderPagination,
+  showListingsPaginated
+} from "../../ui/global/pagination.js";
 
 const loginForm = document.forms.login;
 const registerForm = document.getElementById("registerForm");
@@ -26,12 +31,33 @@ async function getAllPosts() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
-    showPosts(data);
+    const paginatedPosts = paginate(data.data, 32);
+
+    renderPagination(paginatedPosts);
+    showListingsPaginated(paginatedPosts[0]);
   } catch (error) {
     console.error("An error has occurred:", error.message);
   }
 }
+
+// function showListings(postData) {
+//   listingsSection.innerHTML = "";
+//   // postData;
+//   for (let i = 0; i < postData.length; i++) {
+//     listingsSection.innerHTML += `
+//         <a class="post-link-card" href="html/listing/?id=${postData[i].id}">
+//         <section class="listing-post">
+//           <div class="img-header">
+//             <img src="${postData[i].media.url}" alt="">
+//             <h2>${postData[i].title}</h2>
+//             <p>${postData[i].endsAt}</p>
+//             <p>${postData[i]._count.bids}</p>
+//           </div>
+//         </section>
+//         </a>
+//         `;
+//   }
+// }
 
 if (bearerToken) {
   const navBar = document.querySelector(".navBar");
@@ -44,25 +70,6 @@ if (bearerToken) {
   registerForm.style.display = "none";
 
   getAllPosts();
-}
-
-function showPosts(postData) {
-  listingsSection.innerHTML = "";
-
-  for (let i = 0; i < postData.data.length; i++) {
-    listingsSection.innerHTML += `
-      <a class="post-link-card" href="html/listing/?id=${postData.data[i].id}">
-      <section class="listing-post">
-        <div class="img-header">
-          <img src="${postData.data[i].media.url}" alt="">
-          <h2>${postData.data[i].title}</h2>
-          <p>${postData.data[i].endsAt}</p>
-          <p>${postData.data[i]._count.bids}</p>
-        </div>
-      </section>
-      </a>
-      `;
-  }
 }
 
 {
