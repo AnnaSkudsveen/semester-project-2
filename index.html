@@ -10,37 +10,41 @@
   <link rel="shortcut icon" href="/favicon/apple-touch-icon.png" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Auction House</title>
-  <script type="module" src="/src/js/app.js" defer></script>
 </head>
 
 <body>
   <header>
     <nav class="navBar">
-      <button class="loginBtn">Login</button>
-      <button class="registerBtn">Register</button>
-      <form name="searchForm" id="searchForm">
-        <label for="search"></label>
-        <input type="text" name="search" id="search">
-        <button type="submit">Search</button>
-      </form>
+      <!-- <button class="loginBtn">Login</button>
+      <button class="registerBtn">Register</button> -->
+      <div class="searchSection">
+        <form name="searchForm" id="searchForm" action="javascript:void(0);">
+          <label for="search">Search</label>
+
+          <input type="text" name="search" id="search">
+
+          <button type="submit" id="searchBtn">Search</button>
+        </form>
+      </div>
+
       <a href="./html/listing/create/">Create listing</a>
     </nav>
   </header>
 
-  <div id="searchedItems">
+  <!-- <div id="searchedItems">
 
-  </div>
+  </div> -->
 
   <div class="loginModal">
     <form name="login">
       <div>
-        <label for="email">Email</label>
-        <input id="emailLogin" type="email" name="email" required />
+        <label for="emailLogin">Email</label>
+        <input id="emailLogin" type="email" name="email" required autocomplete="name" />
       </div>
 
       <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="passwordLogin" required />
+        <label for="passwordLogin">Password</label>
+        <input type="password" name="password" id="passwordLogin" required autocomplete="current-password" />
       </div>
 
       <button id="redirectRegister">Register</button>
@@ -51,20 +55,21 @@
   <div class="registerModal">
     <form name="register" id="registerForm">
       <div>
-        <label for="name">Name</label>
+        <label for="nameRegister">Name</label>
         <input id="nameRegister" type="text" name="name" required maxlength="20" pattern="^[\w]+$"
-          title="Please enter a username using only letters and numbers" />
+          title="Please enter a username using only letters and numbers" autocomplete="name" />
       </div>
 
       <div>
-        <label for="email">Email</label>
+        <label for="emailRegister">Email</label>
         <input id="emailRegister" type="email" name="email" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-          title="Please enter a valid noroff.no or stud.noroff.no address" />
+          title="Please enter a valid noroff.no or stud.noroff.no address" autocomplete="email" />
       </div>
 
       <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="passwordRegister" required minlength="8" />
+        <label for="passwordRegister">Password</label>
+        <input type="password" name="password" id="passwordRegister" required minlength="8"
+          autocomplete="new-password" />
       </div>
 
       <button id="redirectLogin">Login</button>
@@ -72,9 +77,9 @@
     </form>
   </div>
 
-  <section class="carousel">
+  <!-- <section class="carousel">
 
-  </section>
+  </section> -->
 
   <section class="listingsSection">
 
@@ -84,7 +89,7 @@
 
   </section>
 
-
+  <script type="module" src="/src/js/app.js"></script>
 </body>
 
 </html>

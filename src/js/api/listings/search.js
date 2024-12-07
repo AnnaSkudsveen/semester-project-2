@@ -1,9 +1,9 @@
 import { API_AUCTION_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 
-const form = document.forms.searchBar;
+// const form = document.forms.searchBar;
 const bearerToken = localStorage.getItem("bearerToken");
-const searchedItemsSection = document.getElementById("searchedItems");
+// const searchedItemsSection = document.getElementById("searchedItems");
 
 export async function search(query) {
   if (!bearerToken) {
@@ -17,10 +17,10 @@ export async function search(query) {
       }
     };
 
-    const response = await fetch(
-      `${API_AUCTION_POSTS}/search?q=${query}`,
-      options
-    );
+    const response = await fetch(`${API_AUCTION_POSTS}/search?q=cool`, options);
+    if (!response.ok) {
+      throw new Error(`Error, status: ${response.status}`);
+    }
     const data = await response.json();
     console.log(data);
 
