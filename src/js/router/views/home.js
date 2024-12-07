@@ -8,14 +8,17 @@ import {
   renderPagination,
   showListingsPaginated
 } from "../../ui/global/pagination.js";
+import { onSearch } from "../../ui/listing/search.js";
 
 const loginForm = document.forms.login;
 const registerForm = document.getElementById("registerForm");
 const bearerToken = localStorage.getItem("bearerToken");
 const listingsSection = document.querySelector(".listingsSection");
+const searchForm = document.forms.searchForm;
 
 loginForm.addEventListener("submit", onLogin);
 registerForm.addEventListener("submit", onRegister);
+searchForm.addEventListener("submit", onSearch);
 
 async function getAllPosts() {
   try {
