@@ -20,25 +20,28 @@
 
         </nav>
     </header>
-    <h1>Update profile</h1>
+    <main>
+        <h1>Update profile</h1>
 
-    <form name="updateProfile">
-        <div>
-            <label for="bio">Bio</label>
-            <input id="bio" type="text" name="bio" required maxlength="20" title="Edit title of your listing" />
-        </div>
+        <form name="updateProfile">
+            <div>
+                <label for="bio">Bio</label>
+                <input id="bio" type="text" name="bio" maxlength="160" title="Edit title of your listing" />
+            </div>
 
-        <div>
-            <label for="image">Profile picture</label>
-            <input id="image" type="url" name="image" />
-        </div>
+            <div>
+                <label for="image">Profile picture</label>
+                <input id="image" type="url" name="image" />
+            </div>
 
-        <div>
-            <label for="banner">Profile banner</label>
-            <input id="banner" type="url" name="banner" />
-        </div>
-        <button>Update Profile</button>
-    </form>
+            <div>
+                <label for="banner">Profile banner</label>
+                <input id="banner" type="url" name="banner" />
+            </div>
+            <button>Update Profile</button>
+        </form>
+    </main>
+
 </body>
 
 </html>
