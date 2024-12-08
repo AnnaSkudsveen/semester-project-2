@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction House</title>
     <script type="module" src="/src/app.js" defer></script>
-
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="shortcut icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon/favicon-16x16.png" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon/android-chrome-192x192.png" type="image/x-icon">
@@ -17,19 +17,38 @@
 
 <body>
     <header>
+        <div></div>
         <nav class="navBar">
-
+            <a href="/html/"><i class="ph ph-house-simple"></i></a>
+            <a href=""><i class="ph ph-magnifying-glass"></i></a>
+            <a href="/html/profile/"><i class="ph ph-user"></i></a>
+            <a href="/html/profile/listings"><i class="ph ph-receipt">Listings</i></a>
+            <a href=""><i class="ph ph-piggy-bank">Purchases</i></a>
         </nav>
     </header>
+    <main class="">
+        <div class="imageSection flex flex-col justify-center items-center relative">
+            <a class="updateProfile flex" href="./edit/">
+                <i class="ph ph-pencil-simple absolute bottom-10"></i>
+            </a>
 
-    <a class="updateProfile" href="./edit/">Update Profile</a>
+            <section class="profileSection">
 
-    <section class="profileSection">
+            </section>
+        </div>
 
-    </section>
-    <section class="myListings">
+        <section class="myListings">
 
-    </section>
+        </section>
+    </main>
+
 </body>
 
 </html>
+
+<!-- <div>
+    <img src="${profileData.banner.url}" alt="Profile banner">
+    <img src="${profileData.avatar.url}" alt="Profile picture" class="rounded-full">
+    <h2>${profileData.name}</h2>
+    <p>${profileData.bio}</p>
+</div> -->
