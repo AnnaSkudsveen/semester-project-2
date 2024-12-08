@@ -4,6 +4,20 @@
 
 @tailwind utilities;
 
+:root {
+  --primary100: #c0daf0;
+  --primary200: #a0c4e4;
+  --primary400: #7a9fca;
+  --primary300: #8ab3dc;
+  --primary500: #4a6e97;
+  --primary600: #204c80;
+  --primary700: #1a3d6b;
+  --primary800: #132a4d;
+  --primary900: #0e1e35;
+}
 /* body {
-  background-color: blue;
+  width: 800px;
 } */
+.myListings {
+  max-width: 800px;
+}

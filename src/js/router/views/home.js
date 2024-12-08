@@ -26,7 +26,7 @@ async function getAllPosts() {
         ...headers()
       }
     };
-    const response = await fetch(`${API_AUCTION_POSTS}`, options);
+    const response = await fetch(`${API_AUCTION_POSTS}?_active=true`, options);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
