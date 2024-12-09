@@ -20,8 +20,10 @@ console.log(searchForm);
 
 loginForm.addEventListener("submit", onLogin);
 registerForm.addEventListener("submit", onRegister);
-// searchForm.addEventListener("submit", onSearch);
-searchForm.addEventListener("submit", onSearch);
+
+if (searchForm) {
+  searchForm.addEventListener("submit", onSearch);
+}
 
 if (bearerToken) {
   const navBar = document.querySelector(".navBar");
