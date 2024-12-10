@@ -8,14 +8,38 @@ import {
   renderPagination,
   showListingsPaginated
 } from "../../ui/global/pagination.js";
+import { onSearch } from "../../ui/listing/search.js";
 
 const loginForm = document.forms.login;
-const registerForm = document.getElementById("registerForm");
+const registerForm = document.forms.register;
 const bearerToken = localStorage.getItem("bearerToken");
 const listingsSection = document.querySelector(".listingsSection");
+const searchForm = document.getElementById("searchForm");
+const searchBtn = document.getElementById("searchBtn");
+console.log(searchForm);
 
 loginForm.addEventListener("submit", onLogin);
 registerForm.addEventListener("submit", onRegister);
+
+if (searchForm) {
+  searchForm.addEventListener("submit", onSearch);
+}
+
+if (bearerToken) {
+  const navBar = document.querySelector(".navBar");
+  const username = localStorage.getItem("author");
+  navBar.innerHTML += `
+    <a href="/html/profile/?user=${username}" id="profileLink">My Profile</a>
+    `;
+  showUserCredit(username);
+  loginForm.style.display = "none";
+  registerForm.style.display = "none";
+  console.log("remove eventlisteners");
+  loginForm.removeEventListener("submit", onLogin);
+  registerForm.removeEventListener("submit", onRegister);
+
+  getAllPosts();
+}
 
 async function getAllPosts() {
   try {
@@ -59,22 +83,7 @@ async function getAllPosts() {
 //   }
 // }
 
-if (bearerToken) {
-  const navBar = document.querySelector(".navBar");
-  const username = localStorage.getItem("author");
-  navBar.innerHTML += `
-    <a href="/html/profile/?user=${username}" id="profileLink">My Profile</a>
-    `;
-  showUserCredit(username);
-  loginForm.style.display = "none";
-  registerForm.style.display = "none";
-
-  getAllPosts();
-}
-
-{
-  /* <div class="post-card-btns">
+/* <div class="post-card-btns">
 <button class="editBtn">Edit</button>
 <button class="editBtn">Delete</button>
 </div> */
-}
