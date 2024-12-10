@@ -5,9 +5,10 @@ export function onSearch(event) {
   event.preventDefault();
   console.log("Default prevented");
 
-  const form = document.getElementById("searchForm");
+  const form = document.forms.searchForm;
   console.log(form);
-  const query = form.elements.search.value;
+  const query = form.elements["search"].value;
+  console.log("Query:", query);
 
   search(query).then((data) => {
     if (data) {
