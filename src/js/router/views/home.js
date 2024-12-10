@@ -13,6 +13,8 @@ const loginForm = document.forms.login;
 const registerForm = document.getElementById("registerForm");
 const bearerToken = localStorage.getItem("bearerToken");
 const listingsSection = document.querySelector(".listingsSection");
+const loginBtn = document.querySelector(".loginBtn");
+const registerBtn = document.querySelector(".registerBtn");
 
 loginForm.addEventListener("submit", onLogin);
 registerForm.addEventListener("submit", onRegister);
@@ -39,25 +41,7 @@ async function getAllPosts() {
     console.error("An error has occurred:", error.message);
   }
 }
-
-// function showListings(postData) {
-//   listingsSection.innerHTML = "";
-//   // postData;
-//   for (let i = 0; i < postData.length; i++) {
-//     listingsSection.innerHTML += `
-//         <a class="post-link-card" href="html/listing/?id=${postData[i].id}">
-//         <section class="listing-post">
-//           <div class="img-header">
-//             <img src="${postData[i].media.url}" alt="">
-//             <h2>${postData[i].title}</h2>
-//             <p>${postData[i].endsAt}</p>
-//             <p>${postData[i]._count.bids}</p>
-//           </div>
-//         </section>
-//         </a>
-//         `;
-//   }
-// }
+getAllPosts();
 
 if (bearerToken) {
   const navBar = document.querySelector(".navBar");
@@ -66,15 +50,12 @@ if (bearerToken) {
     <a href="/html/profile/?user=${username}" id="profileLink">My Profile</a>
     `;
   showUserCredit(username);
+  loginForm.removeEventListener("submit", onLogin);
+  registerForm.removeEventListener("submit", onRegister);
   loginForm.style.display = "none";
   registerForm.style.display = "none";
-
-  getAllPosts();
-}
-
-{
-  /* <div class="post-card-btns">
-<button class="editBtn">Edit</button>
-<button class="editBtn">Delete</button>
-</div> */
+  console.log(loginBtn);
+  console.log(registerBtn);
+  loginBtn.style.display = "none";
+  registerBtn.style.display = "none";
 }
