@@ -16,8 +16,9 @@
   --primary900: #0e1e35;
 }
 /* body {
-  width: 800px;
+  max-width: 1400px;
 } */
-.myListings {
+.myListings,
+.imageSection {
   max-width: 800px;
 }
