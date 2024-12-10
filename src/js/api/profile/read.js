@@ -28,11 +28,10 @@ export async function readProfile(username) {
 export function showProfile(profileData) {
   const profileSection = document.querySelector(".profileSection");
   profileSection.innerHTML += `
-    <div>
-
-    <img src="${profileData.avatar.url}" alt="Profile picture" class="rounded-full w-20 md:w-28">
+    <div class="flex flex-col items-center">
+    <img src="${profileData.avatar.url}" alt="Profile picture" class="rounded-full w-20 h-20 md:h-28 md:w-28">
     <h2 class="text-sm font-bold md:text-lg">${profileData.name}</h2>
-    <p class="text-sm">${profileData.bio}</p>
+    <p class="text-sm w-60 md:w-80">${profileData.bio}</p>
     </div>
       `;
 }
