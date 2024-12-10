@@ -21,7 +21,6 @@ const searchForm = document.getElementById("searchForm");
 const searchBtn = document.getElementById("searchBtn");
 console.log(searchForm);
 
-
 loginForm.addEventListener("submit", onLogin);
 registerForm.addEventListener("submit", onRegister);
 
@@ -30,19 +29,22 @@ if (searchForm) {
 }
 
 if (bearerToken) {
+  console.log("bearerToken exists");
   const navBar = document.querySelector(".navBar");
   const username = localStorage.getItem("author");
   navBar.innerHTML += `
-    <a href="/html/profile/?user=${username}" id="profileLink">My Profile</a>
+  <a href="/html/profile/?user=${username}" class="flex gap-2">
+                <i class="ph ph-user text-xl"></i>
+                <p class="hidden lg:block">Profile</p>
+            </a>
+   
+    <button id="logOutBtn">Log out</button>
     `;
   showUserCredit(username);
-  loginForm.style.display = "none";
-  registerForm.style.display = "none";
-  console.log("remove eventlisteners");
   loginForm.removeEventListener("submit", onLogin);
   registerForm.removeEventListener("submit", onRegister);
-
-  getAllPosts();
+  loginForm.style.display = "none";
+  registerForm.style.display = "none";
 }
 
 async function getAllPosts() {
@@ -68,20 +70,3 @@ async function getAllPosts() {
   }
 }
 getAllPosts();
-
-if (bearerToken) {
-  const navBar = document.querySelector(".navBar");
-  const username = localStorage.getItem("author");
-  navBar.innerHTML += `
-    <a href="/html/profile/?user=${username}" id="profileLink">My Profile</a>
-    `;
-  showUserCredit(username);
-  loginForm.removeEventListener("submit", onLogin);
-  registerForm.removeEventListener("submit", onRegister);
-  loginForm.style.display = "none";
-  registerForm.style.display = "none";
-  console.log(loginBtn);
-  console.log(registerBtn);
-  loginBtn.innerText = "Logout";
-  registerBtn.style.display = "none";
-}
