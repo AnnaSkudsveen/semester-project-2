@@ -16,22 +16,34 @@
 
 <body>
   <header>
-    <nav class="navBar">
-      <button class="loginBtn">Login</button>
-      <button class="registerBtn">Register</button>
-      <a href="/"><i class="ph ph-house-simple"></i></a>
-      <a href=""><i class="ph ph-magnifying-glass"></i></a>
-       <div class="searchSection">
-         <form name="searchForm" id="searchForm" action="">
-            <label for="search">Search</label>
-            <input type="text" name="search" id="search">
-            <button type="submit" id="searchBtn">Search</button>
-         </form>
-       </div>
-      <a href="/html/profile/"><i class="ph ph-user"></i></a>
-      <a href="./html/listing/create/"><i class="ph ph-file-plus">Create listing</i></a>
-      <a href=""><i class="ph ph-piggy-bank">Purchases</i></a>
-    </nav>
+    <header>
+      <nav class="navBar flex gap-2 items-center justify-center">
+        <a href="/" class="flex">
+          <i class="ph ph-house-simple hover:text-primary-500 active:text-primary-500 text-xl"></i>
+          <p class="hidden lg:block">Home</p>
+        </a>
+        <a href="" class="flex gap-2">
+          <i class="ph ph-magnifying-glass text-xl"></i>
+          <form id="searchForm" name="searchForm" class="hidden md:block">
+            <label for="search"></label>
+            <input type="text" name="search" id="search" placeholder="Search">
+            <button id="searchBtn">Search</button>
+          </form>
+        </a>
+        <a href="/html/profile/" class="flex gap-2">
+          <i class="ph ph-user text-xl"></i>
+          <p class="hidden lg:block">Profile</p>
+        </a>
+        <a href="../listing/create/" class="flex gap-2">
+          <i class="ph ph-file-plus text-xl"></i>
+          <p class="hidden lg:block">Create listing</p>
+        </a>
+        <a href="">
+          <i class="ph ph-piggy-bank text-xl" class="flex gap-2"></i>
+          <p class="hidden lg:block">Purchases</p>
+        </a>
+      </nav>
+    </header>
   </header>
 
   <!-- <div id="searchedItems">
