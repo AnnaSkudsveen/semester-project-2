@@ -56,6 +56,6 @@ if (bearerToken) {
   registerForm.style.display = "none";
   console.log(loginBtn);
   console.log(registerBtn);
-  loginBtn.style.display = "none";
+  loginBtn.innerText = "Logout";
   registerBtn.style.display = "none";
 }
