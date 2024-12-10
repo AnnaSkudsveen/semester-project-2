@@ -15,28 +15,45 @@
     <link rel="shortcut icon" href="/favicon/apple-touch-icon.png" type="image/x-icon">
 </head>
 
-<body class="h-dvh max-w-">
+<body class="h-dvh w-dvw flex flex-col items-center">
     <header>
-        <nav class="navBar flex">
-            <a href="/"><i class="ph ph-house-simple"></i></a>
-            <a href=""><i class="ph ph-magnifying-glass"></i></a>
-            <a href="/html/profile/"><i class="ph ph-user"></i></a>
-            <a href="../listing/create/"><i class="ph ph-file-plus">Create listing</i></a>
-            <a href=""><i class="ph ph-piggy-bank">Purchases</i></a>
+        <nav class="navBar flex gap-2 items-center justify-center">
+            <a href="/" class="flex">
+                <i class="ph ph-house-simple hover:text-primary-500 active:text-primary-500 text-xl"></i>
+                <p class="hidden lg:block">Home</p>
+            </a>
+            <a href="" class="flex gap-2">
+                <i class="ph ph-magnifying-glass text-xl"></i>
+                <form id="searchForm" name="searchForm" class="hidden md:block">
+                    <label for="search"></label>
+                    <input type="text" name="search" id="search" placeholder="Search">
+                    <button id="searchBtn">Search</button>
+                </form>
+            </a>
+            <a href="../listing/create/" class="flex gap-2">
+                <i class="ph ph-file-plus text-xl"></i>
+                <p class="hidden lg:block">Create listing</p>
+            </a>
+            <a href="">
+                <i class="ph ph-piggy-bank text-xl" class="flex gap-2"></i>
+                <p class="hidden lg:block">Purchases</p>
+            </a>
         </nav>
     </header>
-    <main class="">
-        <div class="imageSection flex flex-col items-center relative">
-            <a class="updateProfile relative" href="./edit/">
-                <i class="ph ph-pencil-simple right-10"></i>
-            </a>
+
+    <main class="flex flex-col items-center">
+        <div class="imageSection flex flex-col items-center relative m-5">
+
 
             <section class="profileSection">
 
             </section>
+            <a class="updateProfile relative" href="./edit/">
+                <i class="ph ph-pencil-simple absolute bottom-28 md:bottom-16 left-12"></i>
+            </a>
         </div>
-        <div class="bg-background w-dvw">
-            <section class="myListings flex flex-wrap">
+        <div class="bg-background w-dvw flex justify-center">
+            <section class="myListings flex flex-wrap gap-2 m-5">
 
             </section>
         </div>
@@ -45,10 +62,3 @@
 </body>
 
 </html>
-
-<!-- <div>
-    <img src="${profileData.banner.url}" alt="Profile banner">
-    <img src="${profileData.avatar.url}" alt="Profile picture" class="rounded-full">
-    <h2>${profileData.name}</h2>
-    <p>${profileData.bio}</p>
-</div> -->
