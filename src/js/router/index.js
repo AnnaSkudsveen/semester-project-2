@@ -1,5 +1,4 @@
 export default async function router(pathname = window.location.pathname) {
-  console.log("Router function called with pathname:", pathname);
   switch (pathname) {
     case "/":
       await import("./views/home.js");

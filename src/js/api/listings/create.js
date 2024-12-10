@@ -13,9 +13,11 @@ export async function createListing(title, media, body, endsAt, tags) {
       description: `${body}`,
       endsAt: `${endsAt}`,
       tags: [`${tags}`],
-      media: {
-        url: `${media}`
-      }
+      media: [
+        {
+          url: `${media}`
+        }
+      ]
     })
   };
 
@@ -31,7 +33,7 @@ export async function createListing(title, media, body, endsAt, tags) {
     const data = await response.json();
     console.log("Listing created successfully:", data);
 
-    // window.location.href = "/";
+    window.location.href = "/";
     return data;
   } catch (error) {
     console.error("Error:", error.message);

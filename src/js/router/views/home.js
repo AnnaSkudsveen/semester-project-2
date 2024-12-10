@@ -14,9 +14,13 @@ const loginForm = document.forms.login;
 const registerForm = document.forms.register;
 const bearerToken = localStorage.getItem("bearerToken");
 const listingsSection = document.querySelector(".listingsSection");
+
+const loginBtn = document.querySelector(".loginBtn");
+const registerBtn = document.querySelector(".registerBtn");
 const searchForm = document.getElementById("searchForm");
 const searchBtn = document.getElementById("searchBtn");
 console.log(searchForm);
+
 
 loginForm.addEventListener("submit", onLogin);
 registerForm.addEventListener("submit", onRegister);
@@ -50,7 +54,7 @@ async function getAllPosts() {
         ...headers()
       }
     };
-    const response = await fetch(`${API_AUCTION_POSTS}`, options);
+    const response = await fetch(`${API_AUCTION_POSTS}?_active=true`, options);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -63,27 +67,21 @@ async function getAllPosts() {
     console.error("An error has occurred:", error.message);
   }
 }
+getAllPosts();
 
-// function showListings(postData) {
-//   listingsSection.innerHTML = "";
-//   // postData;
-//   for (let i = 0; i < postData.length; i++) {
-//     listingsSection.innerHTML += `
-//         <a class="post-link-card" href="html/listing/?id=${postData[i].id}">
-//         <section class="listing-post">
-//           <div class="img-header">
-//             <img src="${postData[i].media.url}" alt="">
-//             <h2>${postData[i].title}</h2>
-//             <p>${postData[i].endsAt}</p>
-//             <p>${postData[i]._count.bids}</p>
-//           </div>
-//         </section>
-//         </a>
-//         `;
-//   }
-// }
-
-/* <div class="post-card-btns">
-<button class="editBtn">Edit</button>
-<button class="editBtn">Delete</button>
-</div> */
+if (bearerToken) {
+  const navBar = document.querySelector(".navBar");
+  const username = localStorage.getItem("author");
+  navBar.innerHTML += `
+    <a href="/html/profile/?user=${username}" id="profileLink">My Profile</a>
+    `;
+  showUserCredit(username);
+  loginForm.removeEventListener("submit", onLogin);
+  registerForm.removeEventListener("submit", onRegister);
+  loginForm.style.display = "none";
+  registerForm.style.display = "none";
+  console.log(loginBtn);
+  console.log(registerBtn);
+  loginBtn.innerText = "Logout";
+  registerBtn.style.display = "none";
+}

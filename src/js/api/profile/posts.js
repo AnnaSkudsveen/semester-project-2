@@ -32,9 +32,9 @@ export function showPostsWithButtons(postData) {
 
   for (let i = 0; i < postData.data.length; i++) {
     myListings.innerHTML += `
-        <section class="listing-post">
+        <section class="listing-post flex-1 w-32 basis-1/4">
         <a class="post-link-card" href="/html/listing/edit/?id=${postData.data[i].id}">
-          <div class="img-header">
+          <div class="h-64 ">
             <img src="${postData.data[i].media.url}" alt="">
             <h2>${postData.data[i].title}</h2>
             <p>${postData.data[i].endsAt}</p>

@@ -29,12 +29,14 @@ export function showProfile(profileData) {
   const profileSection = document.querySelector(".profileSection");
   profileSection.innerHTML += `
     <div>
-    <img src="${profileData.banner.url}" alt="Profile banner">
-    <img src="${profileData.avatar.url}" alt="Profile picture">
-    <h2>${profileData.name}</h2>
-    <p>${profileData.bio}</p>
+
+    <img src="${profileData.avatar.url}" alt="Profile picture" class="rounded-full w-20 md:w-28">
+    <h2 class="text-sm font-bold md:text-lg">${profileData.name}</h2>
+    <p class="text-sm">${profileData.bio}</p>
     </div>
       `;
 }
 
 export async function readProfiles(limit, page) {}
+
+/* <img src="${profileData.banner.url}" alt="Profile banner" class=""> */

@@ -10,22 +10,27 @@
   <link rel="shortcut icon" href="/favicon/apple-touch-icon.png" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Auction House</title>
+  <script type="module" src="/src/app.js" defer></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
 <body>
   <header>
     <nav class="navBar">
-      <!-- <button class="loginBtn">Login</button>
-      <button class="registerBtn">Register</button> -->
-      <div class="searchSection">
-        <form name="searchForm" id="searchForm" action="">
-          <label for="search">Search</label>
-          <input type="text" name="search" id="search">
-          <button type="submit" id="searchBtn">Search</button>
-        </form>
-      </div>
-
-      <a href="./html/listing/create/">Create listing</a>
+      <button class="loginBtn">Login</button>
+      <button class="registerBtn">Register</button>
+      <a href="/"><i class="ph ph-house-simple"></i></a>
+      <a href=""><i class="ph ph-magnifying-glass"></i></a>
+       <div class="searchSection">
+         <form name="searchForm" id="searchForm" action="">
+            <label for="search">Search</label>
+            <input type="text" name="search" id="search">
+            <button type="submit" id="searchBtn">Search</button>
+         </form>
+       </div>
+      <a href="/html/profile/"><i class="ph ph-user"></i></a>
+      <a href="./html/listing/create/"><i class="ph ph-file-plus">Create listing</i></a>
+      <a href=""><i class="ph ph-piggy-bank">Purchases</i></a>
     </nav>
   </header>
 
