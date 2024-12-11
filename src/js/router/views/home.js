@@ -61,7 +61,7 @@ async function getAllPosts() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    const paginatedPosts = paginate(data.data, 32);
+    const paginatedPosts = paginate(data.data, 20);
 
     renderPagination(paginatedPosts);
     showListingsPaginated(paginatedPosts[0]);

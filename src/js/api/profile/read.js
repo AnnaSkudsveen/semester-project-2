@@ -19,6 +19,7 @@ export async function readProfile(username) {
       options
     );
     const data = await response.json();
+    console.log(data);
     showProfile(data.data);
   }
 
@@ -33,9 +34,24 @@ export function showProfile(profileData) {
     <h2 class="text-sm font-bold md:text-lg">${profileData.name}</h2>
     <p class="text-sm w-60 md:w-80">${profileData.bio}</p>
     </div>
+
+    <section class="flex gap-10">
+      <div class="flex gap-1">
+        <p class="font-bold">${profileData.credits}</p>
+        <p>Credits</p>
+      </div>
+
+      <div class="flex gap-1">
+        <p class="font-bold">${profileData._count.listings}</p>
+        <p>Listings</p>
+      </div>
+
+      <div class="flex gap-1">
+        <p class="font-bold">${profileData._count.wins}</p>
+        <p>Wins</p>
+      </div>
+    </section>
       `;
 }
 
 export async function readProfiles(limit, page) {}
-
-/* <img src="${profileData.banner.url}" alt="Profile banner" class=""> */

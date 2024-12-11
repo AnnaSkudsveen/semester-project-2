@@ -27,7 +27,7 @@ export async function getAllPostsbyUser(username) {
   }
 }
 
-async function updateCountdown(element, endDate) {
+export async function updateCountdown(element, endDate) {
   const endsAt = new Date(`${endDate}`);
   const now = new Date();
   const diff = endsAt - now;
@@ -43,7 +43,6 @@ async function updateCountdown(element, endDate) {
   const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
   element.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  setInterval(() => updateCountdown(endDate), 60000);
 }
 
 export function showPostsWithButtons(postData) {
@@ -51,11 +50,11 @@ export function showPostsWithButtons(postData) {
 
   for (let i = 0; i < postData.data.length; i++) {
     myListings.innerHTML += `
-      <section class="listing-post flex-1 w-32 basis-1/4 gap-5">
+      <section class="listing-post flex-1 basis-1/2 w-32 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 gap-5 max-w-48 items-center justify-center">
         <a class="post-link-card" href="/html/listing/edit/?id=${postData.data[i].id}">
           <div class="h-64 flex flex-col gap-3 mb-3">
             <section class="relative h-36">
-              <img src="${postData.data[i].media[0].url}" alt="" class="h-36 w-full object-cover">
+              <img src="${postData.data[i].media[0].url}" alt="" class="h-36 w-full object-cover rounded-t-md">
 
               <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent"></div>
             
@@ -67,7 +66,7 @@ export function showPostsWithButtons(postData) {
             <h2 class="text-base font-bold">${postData.data[i].title}</h2>
 
             <div class="flex flex-col">
-              <p class="countdown text-alertRed-700" data-end-date="${postData.data[i].endsAt}"></p>
+              <p class="countdown text-alertRed-700" data-end-date="${postData.data[i].endsAt}">${postData.data[i].endsAt}</p>
 
               <p class="text-xs text-left">Time left</p>
             </div>

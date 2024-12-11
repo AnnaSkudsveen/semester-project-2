@@ -7,8 +7,8 @@
 :root {
   --primary100: #c0daf0;
   --primary200: #a0c4e4;
-  --primary400: #7a9fca;
   --primary300: #8ab3dc;
+  --primary400: #7a9fca;
   --primary500: #4a6e97;
   --primary600: #204c80;
   --primary700: #1a3d6b;
@@ -19,6 +19,7 @@
   max-width: 1400px;
 } */
 .myListings,
-.imageSection {
+.imageSection,
+.listingsSection {
   max-width: 800px;
 }
