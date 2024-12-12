@@ -1,6 +1,8 @@
 import { onBidOnItem } from "../../ui/listing/bid.js";
 import { API_AUCTION_POSTS } from "../../api/constants";
 import { headers } from "../../api/headers.js";
+import { showUserCredit } from "./navBar.js";
+
 const bidForm = document.forms.bidModal;
 const bearerToken = localStorage.getItem("bearerToken");
 
@@ -8,11 +10,13 @@ const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
 
 const listingId = params.get("id");
+const username = localStorage.getItem("author");
 const listingSection = document.querySelector(".listingSection");
 const listingImages = document.querySelector(".listingImages");
 const bidsSection = document.querySelector(".bidAmounts");
 
 bidForm.addEventListener("submit", onBidOnItem);
+showUserCredit(username);
 
 async function showListing(id) {
   if (!bearerToken) {
@@ -41,6 +45,7 @@ async function showListing(id) {
     listingSection.innerHTML = `
     <section class="listing">
           <h2>${listingData.data.title}</h2>
+          <p>${listingData.data.description}</p>
           <p>${listingData.data.endsAt}</p>
           <p>${listingData.data._count.bids}</p>
       </section>
