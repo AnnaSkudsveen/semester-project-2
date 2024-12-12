@@ -9,23 +9,22 @@ import {
   showListingsPaginated
 } from "../../ui/global/pagination.js";
 import { onSearch } from "../../ui/listing/search.js";
+import { onLogOut } from "../../ui/global/logout.js";
+
+window.onLogOut = onLogOut;
 
 const loginForm = document.forms.login;
 const registerForm = document.forms.register;
 const bearerToken = localStorage.getItem("bearerToken");
-const listingsSection = document.querySelector(".listingsSection");
-
-const loginBtn = document.querySelector(".loginBtn");
-const registerBtn = document.querySelector(".registerBtn");
 const searchForm = document.getElementById("searchForm");
-const searchBtn = document.getElementById("searchBtn");
-console.log(searchForm);
+const searchFormBtn = document.getElementById("searchBtn");
 
 loginForm.addEventListener("submit", onLogin);
 registerForm.addEventListener("submit", onRegister);
 
+searchFormBtn.removeEventListener("submit", onSearch);
 if (searchForm) {
-  searchForm.addEventListener("submit", onSearch);
+  searchFormBtn.addEventListener("submit", onSearch, { capture: true });
 }
 
 if (bearerToken) {
@@ -38,13 +37,27 @@ if (bearerToken) {
                 <p class="hidden lg:block">Profile</p>
             </a>
    
-    <button id="logOutBtn">Log out</button>
+    <button id="logOutBtn" onclick="onLogOut(event)">Log out</button>
     `;
-  showUserCredit(username);
+
+  const logOutBtn = document.getElementById("logOutBtn");
+  console.log(logOutBtn);
+
   loginForm.removeEventListener("submit", onLogin);
   registerForm.removeEventListener("submit", onRegister);
   loginForm.style.display = "none";
   registerForm.style.display = "none";
+  showUserCredit(username);
+  // console.log(onLogOut);
+  // console.log(onSearch);
+  // logOutBtn.removeEventListener("click", onLogOut);
+  // if (logOutBtn) {
+  //   console.log("Adding event listener to logOutBtn");
+  //   logOutBtn.addEventListener("click", onLogOut, { capture: true });
+  //   console.log("logOutBtn event listener added");
+  // } else {
+  //   console.log("logOutBtn is not found");
+  // }
 }
 
 async function getAllPosts() {
