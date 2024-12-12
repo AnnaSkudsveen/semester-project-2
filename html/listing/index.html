@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction House</title>
     <script type="module" src="/src/app.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="shortcut icon" href="../../../public/favicon/favicon-32x32.png" type="image/x-icon">
     <link rel="shortcut icon" href="../../../public/favicon/favicon-16x16.png" type="image/x-icon">
     <link rel="shortcut icon" href="../../../public/favicon/android-chrome-192x192.png" type="image/x-icon">
@@ -16,8 +17,27 @@
 
 <body>
     <header>
-        <nav class="navBar">
-
+        <nav class="navBar flex gap-2 items-center justify-center">
+            <a href="/" class="flex">
+                <i class="ph ph-house-simple hover:text-primary-500 active:text-primary-500 text-xl"></i>
+                <p class="hidden lg:block">Home</p>
+            </a>
+            <a href="" class="flex gap-2">
+                <i class="ph ph-magnifying-glass text-xl"></i>
+                <form id="searchForm" name="searchForm" class="hidden md:block">
+                    <label for="search"></label>
+                    <input type="text" name="search" id="search" placeholder="Search">
+                    <button id="searchBtn">Search</button>
+                </form>
+            </a>
+            <a href="../listing/create/" class="flex gap-2">
+                <i class="ph ph-file-plus text-xl"></i>
+                <p class="hidden lg:block">Create listing</p>
+            </a>
+            <a href="">
+                <i class="ph ph-piggy-bank text-xl" class="flex gap-2"></i>
+                <p class="hidden lg:block">Purchases</p>
+            </a>
         </nav>
     </header>
     <h1>Listing page</h1>
