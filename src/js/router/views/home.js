@@ -22,9 +22,8 @@ const searchFormBtn = document.getElementById("searchBtn");
 loginForm.addEventListener("submit", onLogin);
 registerForm.addEventListener("submit", onRegister);
 
-searchFormBtn.removeEventListener("submit", onSearch);
 if (searchForm) {
-  searchFormBtn.addEventListener("submit", onSearch, { capture: true });
+  searchForm.addEventListener("submit", onSearch);
 }
 
 if (bearerToken) {

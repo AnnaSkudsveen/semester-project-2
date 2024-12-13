@@ -10,13 +10,6 @@ export function onSearch(event) {
   const query = form.elements["search"].value;
   console.log("Query:", query);
 
-  search(query).then((data) => {
-    if (data) {
-      console.log("Search results:", data);
-      // Process the search results here
-    } else {
-      console.log("No data returned from search");
-    }
-  });
+  search(query);
   console.log(`Query: ${query}`);
 }
