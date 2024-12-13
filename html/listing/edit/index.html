@@ -20,33 +20,34 @@
 
         </nav>
     </header>
-    <h1>Edit listing</h1>
 
-    <form name="editListing" id="updateListing">
-        <div>
-            <label for="title">Title</label>
-            <input id="title" type="text" name="title" required maxlength="20" title="Edit title of your listing" />
-        </div>
+    <main class="w-dvw flex flex-col items-center">
+        <h1 class="text-xl font-bold">Edit listing</h1>
+        <form name="editListing" id="updateListing" class="flex flex-col m-10 w-64 sm:w-[400px] lg:w-[800px] gap-4">
 
-        <div>
-            <label for="body">Description</label>
-            <input id="body" type="text" name="body" required title="Edit the text in your listing" />
-        </div>
+            <label for="title" class="hidden">Title</label>
+            <input id="title" type="text" name="title" required maxlength="20" title="Edit title of your listing"
+                class="h-9" />
 
-        <div>
-            <label for="tags">Tags</label>
-            <input id="tags" type="text" name="tags" required title="Edit the text in your listing" />
-        </div>
-        <div>
-            <label for="image">Images</label>
-            <div id="editListingImageDiv">
+            <label for="body" class="hidden">Description</label>
+            <textarea id="body" type="text" name="body" required title="Edit the text in your listing"></textarea>
+
+            <label for="tags" class="hidden">Tags</label>
+            <input id="tags" type="text" name="tags" required title="Edit the tag in your listing" class="h-9" />
+
+            <label for="image" class="hidden">Images</label>
+            <div id="editListingImageDiv" class="h-9">
 
             </div>
-        </div>
 
-        <button>Edit listing</button>
-    </form>
-    <button id="deleteBtnEdit">Delete listing</button>
+
+            <button class="bg-primary-700 text-xs text-lightText w-full h-7 sm:h-11 sm:text-sm rounded">Edit
+                listing</button>
+        </form>
+        <p class="editP"></p>
+        <button id="deleteBtnEdit" class="text-alertRed-700 underline">Delete listing</button>
+    </main>
+
 </body>
 
 </html>

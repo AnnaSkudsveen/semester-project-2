@@ -10,6 +10,7 @@ const form = document.forms.updateListing;
 const bearerToken = localStorage.getItem("bearerToken");
 const imageDiv = document.getElementById("editListingImageDiv");
 const deleteBtn = document.getElementById("deleteBtnEdit");
+const editP = document.querySelector(".editP");
 
 async function getListing(id) {
   if (!bearerToken) {
@@ -35,12 +36,21 @@ async function getListing(id) {
     if (Array.isArray(data.data.media) && data.data.media.length > 0) {
       for (let i = 0; i < data.data.media.length; i++) {
         imageDiv.innerHTML += `
-                    <input id="image" type="url" name="image" value="${data.data.media[i].url}"/>
+                    <input id="image" type="url" name="image" value="${data.data.media[i].url}" class="h-9 w-full"/>
                     `;
       }
     } else {
       imageDiv.innerHTML += `
-        <input id="image" type="url" name="image"/>
+        <input id="image" type="url" name="image" class="h-9 w-full"/>
+      `;
+    }
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error updating listing:", errorData);
+      editP.innerHTML = "";
+      editP.innerHTML += `
+      <p class="text-alertRed-700 text-base"> ${errorData.errors[0].message}</p>
       `;
     }
   }
