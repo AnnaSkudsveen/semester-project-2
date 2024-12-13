@@ -5,6 +5,7 @@ const bearerToken = localStorage.getItem("bearerToken");
 
 const user = localStorage.getItem("author");
 const form = document.forms.updateProfile;
+const profileEditP = document.querySelector(".profileEditP");
 
 async function getProfile(username) {
   if (!bearerToken) {
@@ -23,6 +24,15 @@ async function getProfile(username) {
       options
     );
     const data = await response.json();
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error updating listing:", errorData);
+      profileEditP.innerHTML = "";
+      profileEditP.innerHTML += `
+      <p class="text-alertRed-700 text-base"> ${errorData.errors[0].message}</p>
+      `;
+    }
 
     form.bio.value = data.data.bio || "";
     form.image.value = data.data.avatar.url || "";
