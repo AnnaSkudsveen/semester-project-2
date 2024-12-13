@@ -53,7 +53,7 @@ export function showListingsPaginated(postData) {
               <p class="text-lightText font-bold">${postData[i]._count.bids} bids</p>
             </div>
           </div>
-            <h2 class="text-base font-bold">${postData[i].title}</h2>
+            <h2 class="text-base font-bold overflow-hidden break-words">${postData[i].title}</h2>
 
             <div class="flex flex-col">
               <p class="countdown text-alertRed-700" data-end-date="${postData[i].endsAt}">${postData[i].endsAt}</p>
