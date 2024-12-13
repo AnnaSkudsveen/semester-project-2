@@ -47,16 +47,6 @@ if (bearerToken) {
   loginForm.style.display = "none";
   registerForm.style.display = "none";
   showUserCredit(username);
-  // console.log(onLogOut);
-  // console.log(onSearch);
-  // logOutBtn.removeEventListener("click", onLogOut);
-  // if (logOutBtn) {
-  //   console.log("Adding event listener to logOutBtn");
-  //   logOutBtn.addEventListener("click", onLogOut, { capture: true });
-  //   console.log("logOutBtn event listener added");
-  // } else {
-  //   console.log("logOutBtn is not found");
-  // }
 }
 
 async function getAllPosts() {
