@@ -5,7 +5,7 @@ export async function onCreateListing(event) {
 
   const form = document.forms.createListing;
   const title = form.title.value;
-  const body = form.body.value;
+  const body = form.description.value;
   const media = form.image.value;
   const endsAt = form.endsAt.value;
   const tags = form.tags.value;
