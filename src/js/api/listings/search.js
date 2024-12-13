@@ -27,6 +27,7 @@ export async function search(query) {
     );
     console.log("SearchSection:", searchSectionListings);
     console.log("Search results:", data);
+    alert("search function called");
     searchSectionListings.innerHTML = "";
     for (let i = 0; i < data.data.length; i++) {
       searchSectionListings.innerHTML += `
