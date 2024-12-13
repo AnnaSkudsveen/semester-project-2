@@ -32,7 +32,7 @@ export async function bidOnItem(bid) {
       const errorData = await response.json();
 
       console.error("Error", errorData);
-
+      bidP.innerHTML = "";
       bidP.innerHTML += `
       <p class="text-alertRed-700 text-base"> ${errorData.errors[0].message}</p>`;
     }
