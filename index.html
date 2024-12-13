@@ -15,11 +15,11 @@
 </head>
 
 <body class="h-dvh w-dvw flex flex-col items-center">
-  <header>
-    <nav class="navBar flex gap-2 items-center justify-center">
-      <a href="/" class="w-9">
-        <svg viewBox="0 0 245 245" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd"
+  <header class="flex-col flex items-center mb-5">
+    <nav class="flex items-center">
+      <a href="/" class="w-9 h-9">
+        <svg viewBox="0 0 245 245" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-9 h-9">
+          <path fill-rule=" evenodd" clip-rule="evenodd"
             d="M122.5 226.573C179.978 226.573 226.573 179.978 226.573 122.5C226.573 65.0223 179.978 18.4274 122.5 18.4274C65.0223 18.4274 18.4274 65.0223 18.4274 122.5C18.4274 179.978 65.0223 226.573 122.5 226.573ZM122.5 245C190.155 245 245 190.155 245 122.5C245 54.8451 190.155 0 122.5 0C54.8451 0 0 54.8451 0 122.5C0 190.155 54.8451 245 122.5 245Z"
             fill="#1A3D6B" />
           <path
@@ -36,35 +36,34 @@
             fill="#1A3D6B" />
         </svg>
       </a>
+      <nav class="navBar flex gap-2 items-center justify-center">
 
-      <a href="/" class="flex">
-        <i class="ph ph-house-simple hover:text-primary-500 active:text-primary-500 text-xl"></i>
+        <a href="/" class="flex">
+          <i class="ph ph-house-simple hover:text-primary-500 active:text-primary-500 text-xl"></i>
 
-        <p class="hidden lg:block">Home</p>
-      </a>
-
-      <div class="searchSection">
-        <form name="searchForm" id="searchForm" action="">
-          <label for="search"><i class="ph ph-magnifying-glass text-xl"></i></label>
-          <input type="text" name="search" id="search" placeholder="Search">
-          <button type="submit" id="searchBtn">Search</button>
-        </form>
-        <div id="searchSectionListings"></div>
-      </div>
+          <p class="hidden lg:block">Home</p>
+        </a>
 
 
-      <a href="../html/listing/create/" class="flex gap-2">
-        <i class="ph ph-file-plus text-xl"></i>
 
-        <p class="hidden lg:block">Create listing</p>
-      </a>
 
-      <a href="">
-        <i class="ph ph-piggy-bank text-xl" class="flex gap-2"></i>
+        <a href="../html/listing/create/" class="flex gap-2">
+          <i class="ph ph-file-plus text-xl"></i>
 
-        <p class="hidden lg:block">Purchases</p>
-      </a>
+          <p class="hidden lg:block">Create listing</p>
+        </a>
+      </nav>
     </nav>
+
+
+    <section class="searchSection">
+      <form name="searchForm" id="searchForm" action="">
+        <label for="search"><i class="ph ph-magnifying-glass text-xl"></i></label>
+        <input type="text" name="search" id="search" placeholder="Search">
+        <button type="submit" id="searchBtn">Search</button>
+      </form>
+      <div id="searchSectionListings"></div>
+    </section>
   </header>
 
   <main class="flex flex-col items-center">
