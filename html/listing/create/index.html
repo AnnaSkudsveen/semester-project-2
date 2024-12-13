@@ -19,36 +19,37 @@
 
         </nav>
     </header>
-    <h1>Create listing</h1>
-    <form name="createListing">
-        <div>
-            <label for="title">Title</label>
-            <input id="title" type="text" name="title" required title="Title of listing" />
-        </div>
 
-        <div>
-            <label for="body">Text</label>
-            <input id="body" type="text" name="body" required title="Write your listing here!" />
-        </div>
+    <main class="w-dvw flex flex-col items-center">
+        <h1 class="text-xl font-bold">Create listing</h1>
 
-        <div>
-            <label for="image">Image</label>
-            <input id="image" type="text" name="image" />
-        </div>
+        <form name="createListing" class="flex flex-col m-10 w-64 sm:w-[400px] lg:w-[800px] gap-4">
+            <label for="title" class="hidden">Title</label>
+            <input id="title" type="text" name="title" required title="Title of listing" placeholder="Title"
+                class="h-9" />
 
-        <div>
-            <label for="endsAt">Ends:</label>
-            <input id="endsAt" type="date" name="endsAt" />
-        </div>
-        <div>
-            <label for="tags">Tags</label>
-            <input id="tags" type="text" name="tags" />
-        </div>
+            <label for="description" class="hidden">Text</label>
+            <textarea id="description" type="text" name="description" required title="Write your listing here!"
+                placeholder="Text"></textarea>
+
+            <label for="image" class="hidden">Image</label>
+            <input id="image" type="text" name="image" placeholder="Image URL" class="h-9" />
+
+            <div class="flex flex-col gap-1">
+                <label for="endsAt">Ends</label>
+                <input id="endsAt" type="date" name="endsAt" placeholder="Ends:" class="h-9" />
+            </div>
 
 
+            <label for="tags" class="hidden">Tag</label>
+            <input id="tags" type="text" name="tags" placeholder="Tag" class="h-9" />
 
-        <button>Create listing</button>
-    </form>
+            <button class="bg-primary-700 text-xs text-lightText w-full h-7 sm:h-11 sm:text-sm rounded">Create
+                listing</button>
+
+            <p class="createP"></p>
+        </form>
+    </main>
 </body>
 
 </html>
