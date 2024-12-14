@@ -12,18 +12,36 @@ import { onSearch } from "../../ui/listing/search.js";
 import { onLogOut } from "../../ui/global/logout.js";
 
 window.onLogOut = onLogOut;
+const bearerToken = localStorage.getItem("bearerToken");
 
 const loginForm = document.forms.login;
+const loginModal = document.querySelector(".loginModal");
 const registerForm = document.forms.register;
-const bearerToken = localStorage.getItem("bearerToken");
+const registerModal = document.querySelector(".registerModal");
+const redirectRegisterBtn = document.getElementById("redirectRegister");
+const redirectLoginBtn = document.getElementById("redirectLogin");
+
 const searchForm = document.getElementById("searchForm");
-const searchFormBtn = document.getElementById("searchBtn");
 
 loginForm.addEventListener("submit", onLogin);
 registerForm.addEventListener("submit", onRegister);
 
 if (searchForm) {
   searchForm.addEventListener("submit", onSearch);
+}
+
+redirectRegisterBtn.addEventListener("click", () => {
+  registerModal.style.display = "block";
+  loginModal.style.display = "none";
+});
+
+redirectLoginBtn.addEventListener("click", () => {
+  loginModal.style.display = "block";
+  registerModal.style.display = "none";
+});
+
+if (loginModal) {
+  registerModal.style.display = "none";
 }
 
 if (bearerToken) {
@@ -44,8 +62,9 @@ if (bearerToken) {
 
   loginForm.removeEventListener("submit", onLogin);
   registerForm.removeEventListener("submit", onRegister);
+
   loginForm.style.display = "none";
-  registerForm.style.display = "none";
+
   showUserCredit(username);
 }
 

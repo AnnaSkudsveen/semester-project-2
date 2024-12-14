@@ -13,8 +13,17 @@ export async function login(email, password) {
       })
     });
 
+    const loginRegisterP = document.querySelector(".loginRegisterP");
+    const registerModal = document.querySelector(".registerModal");
+    const loginModal = document.querySelector(".loginModal");
+    const redirectRegisterBtn = document.getElementById("redirectRegister");
+    const redirectLoginBtn = document.getElementById("redirectLogin");
+
     if (!response.ok) {
-      throw new Error(`status: ${response.status}`);
+      const errorData = await response.json();
+      console.error("Error:", errorData);
+      alert(`Error: ${errorData.errors[0].message}`);
+      throw new Error("Registration failed");
     }
 
     const data = await response.json();
