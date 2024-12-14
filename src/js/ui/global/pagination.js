@@ -49,6 +49,7 @@ export function showListingsPaginated(postData) {
       postData[i].media.length > 0
         ? postData[i].media[0].url
         : "default-image-url.jpg";
+
     listingsSection.innerHTML += `
     <section class="listing-post flex-1 w-32 basis-1/3 md:basis-1/4 lg:basis-1/5 gap-5 max-w-48 items-center justify-center">
       <a class="post-link-card " href="html/listing/?id=${postData[i].id}">

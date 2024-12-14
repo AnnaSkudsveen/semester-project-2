@@ -23,7 +23,8 @@ showUserCredit(username);
 
 async function showListing(id) {
   if (!bearerToken) {
-    console.log("Try logging in");
+    alert("You need to be logged in to view this page");
+    window.location.href = "/";
   } else {
     const options = {
       method: "GET",
