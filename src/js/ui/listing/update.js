@@ -12,5 +12,4 @@ export async function onUpdateListing(event) {
   const body = form.body.value;
 
   updateListing(urlId, title, body, image);
-  console.log(`onUpdateListing: Title: ${title}, body: ${body}`);
 }

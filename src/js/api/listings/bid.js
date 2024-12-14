@@ -5,6 +5,7 @@ const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
 
 const listingId = params.get("id");
+const bidP = document.querySelector(".bidP");
 console.log(listingId);
 
 export async function bidOnItem(bid) {
@@ -29,13 +30,17 @@ export async function bidOnItem(bid) {
 
     if (!response.ok) {
       const errorData = await response.json();
+
       console.error("Error", errorData);
-      throw new Error(`Error ${response.status}: ${errorData.message}`);
+      bidP.innerHTML = "";
+      bidP.innerHTML += `
+      <p class="text-alertRed-700 text-base"> ${errorData.errors[0].message}</p>`;
     }
 
     const data = await response.json();
-    console.log("Bid posted successfully:", data);
+
     location.reload();
+    alert("Bid placed successfully");
 
     return data;
   } catch (error) {

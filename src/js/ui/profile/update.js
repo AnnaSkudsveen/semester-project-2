@@ -7,8 +7,6 @@ export async function onUpdateProfile(event) {
   const form = document.forms.updateProfile;
   const bio = form.bio.value;
   const image = form.image.value;
-  const banner = form.banner.value;
 
-  updateProfile(username, bio, image, banner);
-  console.log(`onUpdateProfile: Username: ${username}, bio: ${bio}`);
+  updateProfile(username, bio, image);
 }

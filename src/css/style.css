@@ -5,10 +5,11 @@
 @tailwind utilities;
 
 :root {
+  --background: #D9D9D9
   --primary100: #c0daf0;
   --primary200: #a0c4e4;
-  --primary400: #7a9fca;
   --primary300: #8ab3dc;
+  --primary400: #7a9fca;
   --primary500: #4a6e97;
   --primary600: #204c80;
   --primary700: #1a3d6b;
@@ -16,8 +17,21 @@
   --primary900: #0e1e35;
 }
 /* body {
-  width: 800px;
+  max-width: 1400px;
 } */
-.myListings {
+.myListings,
+.imageSection,
+.listingsSection {
   max-width: 800px;
+}
+
+input, textarea{
+  background-color: var(--background);
+  border: 1px solid var(--primary500);
+  border-radius: 4px;
+  padding-left: 8px;
+}
+.pagination-button.active {
+  background-color: var(--primary600);
+  color: #FFFFFF;
 }

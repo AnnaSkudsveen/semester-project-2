@@ -21,19 +21,31 @@ export async function search(query) {
     }
     const data = await response.json();
     console.log("Response data:", data);
-    return data;
+
+    const searchSectionListings = document.getElementById(
+      "searchSectionListings"
+    );
+    console.log("SearchSection:", searchSectionListings);
+    console.log("Search results:", data);
+    alert("search function called");
+    searchSectionListings.innerHTML = "";
+    for (let i = 0; i < data.data.length; i++) {
+      searchSectionListings.innerHTML += `
+      <div class="flex items-center">
+        <img
+          src="${data.data[i].media[0].url}"
+          alt="${data.data[i].title}"
+          class="w-1/2"
+        />
+        <div class="flex flex-col">
+          <h2>${data.data[i].title}</h2>
+          <p>${data.data[i].description}</p>
+          <p>${data.data[i]._counts.bids}</p>
+        </div>
+      </div>
+      `;
+    }
   } catch (error) {
-    console.error("Error fetching search results:", error);
+    console.log("Error fetching search results:", error);
   }
 }
-// if (Array.isArray(data.data.media) && data.data.media.length > 0) {
-//   for (let i = 0; i < data.data.media.length; i++) {
-//     searchedItemsSection.innerHTML += `
-//                 <input id="image" type="url" name="image" value="${data.data.media[i].url}"/>
-//                 `;
-//   }
-// } else {
-//   searchedItemsSection.innerHTML += `
-//     <input id="image" type="url" name="image"/>
-//   `;
-// }

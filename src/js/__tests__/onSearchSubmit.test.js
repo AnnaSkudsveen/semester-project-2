@@ -7,15 +7,18 @@ jest.mock("node-fetch", () => jest.fn());
 
 test("pressing the search button triggers onSearch and prevents default form submission", async () => {
   document.body.innerHTML = `
-    <form id="searchForm">
-      <input type="text" name="search" id="search" value="testQuery">
-      <button type="submit" id="searchBtn">Search</button>
-    </form>
+    <form id="searchForm" name="searchForm" class="hidden md:block">
+          <label for="search"></label>
+
+          <input type="text" name="search" id="search" placeholder="Search" value="testQuery">
+
+          <button id="searchBtn">Search</button>
+        </form>
   `;
 
-  const searchForm = document.getElementById("searchForm");
+  const searchFormBtn = document.getElementById("searchBtn");
 
-  searchForm.addEventListener("submit", onSearch);
+  searchFormBtn.addEventListener("submit", onSearch);
 
   fetch.mockResolvedValue({
     ok: true,
@@ -29,7 +32,7 @@ test("pressing the search button triggers onSearch and prevents default form sub
 
   jest.spyOn(event, "preventDefault");
 
-  searchForm.dispatchEvent(event);
+  searchFormBtn.dispatchEvent(event);
 
   expect(event.preventDefault).toHaveBeenCalled();
 

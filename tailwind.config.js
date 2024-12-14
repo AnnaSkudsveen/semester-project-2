@@ -7,6 +7,7 @@ export default {
       "current": "currentColor",
       "background": "#F4F4F4",
       "backgroundDark": "#1A1A1A",
+      "black": "#000000",
       "lightText": "#FFFFFF",
       "darkText": "#222222",
       "primary": {

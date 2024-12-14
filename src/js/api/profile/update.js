@@ -1,7 +1,9 @@
 import { headers } from "../headers.js";
 import { API_AUCTION_PROFILES } from "../constants.js";
 
-export async function updateProfile(username, bio, image, banner) {
+const profileEditP = document.querySelector(".profileEditP");
+
+export async function updateProfile(username, bio, image) {
   const options = {
     method: "PUT",
     headers: {
@@ -12,9 +14,6 @@ export async function updateProfile(username, bio, image, banner) {
       bio: `${bio}`,
       avatar: {
         url: `${image}`
-      },
-      banner: {
-        url: `${banner}`
       }
     })
   };
@@ -27,8 +26,11 @@ export async function updateProfile(username, bio, image, banner) {
 
     if (!response.ok) {
       const errorData = await response.json();
-      console.error("Error updating profile:", errorData);
-      throw new Error(`Error ${response.status}: ${errorData.message}`);
+      console.error("Error updating listing:", errorData);
+      profileEditP.innerHTML = "";
+      profileEditP.innerHTML += `
+      <p class="text-alertRed-700 text-base"> ${errorData.errors[0].message}</p>
+      `;
     }
 
     const data = await response.json();

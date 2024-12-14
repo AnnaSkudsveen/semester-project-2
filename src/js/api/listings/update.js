@@ -1,5 +1,13 @@
 import { headers } from "../headers.js";
 import { API_AUCTION_POSTS } from "../constants.js";
+import { showNavBar } from "../../router/views/navBar.js";
+import { onLogOut } from "../../ui/global/logout.js";
+
+window.onLogOut = onLogOut;
+
+const username = localStorage.getItem("author");
+showNavBar(username);
+const editP = document.querySelector(".editP");
 
 export async function updateListing(id, title, body, image) {
   const options = {
@@ -18,14 +26,17 @@ export async function updateListing(id, title, body, image) {
   try {
     const response = await fetch(`${API_AUCTION_POSTS}/${id}`, options);
 
+    const data = await response.json();
+
     if (!response.ok) {
       const errorData = await response.json();
       console.error("Error updating listing:", errorData);
-      throw new Error(`Error ${response.status}: ${errorData.message}`);
+      editP.innerHTML = "";
+      editP.innerHTML += `
+      <p class="text-alertRed-700 text-base"> ${errorData.errors[0].message}</p>
+      `;
     }
-
-    const data = await response.json();
-    console.log("listing updated successfully:", data);
+    alert("listing updated successfully");
     window.location.href = `/html/listing/?id=${id}`;
     return data;
   } catch (error) {

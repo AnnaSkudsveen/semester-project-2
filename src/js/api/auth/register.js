@@ -14,21 +14,22 @@ export async function register(name, email, password) {
       })
     });
 
+    const loginRegisterP = document.querySelector(".loginRegisterP");
+    const registerModal = document.querySelector(".registerModal");
+    const loginModal = document.querySelector(".loginModal");
+
     if (!response.ok) {
       const errorData = await response.json();
       console.error("Error:", errorData);
-      alert("Error: Registration failed. Please try again.");
+      alert(`Error: ${errorData.errors[0].message}`);
       throw new Error("Registration failed");
     }
 
     const data = await response.json();
     console.log("Registration successful:", data);
-
-    // alert("Registration successful!");
-    //TO DO
-    //Close registration modal, show loader?
-    //Redirect to login modal
-    window.location.href = "/";
+    loginRegisterP.innerHTML = `<p>Registration successful! Redirecting to login...</p>`;
+    registerModal.style.display = "none";
+    loginModal.style.display = "block";
   } catch (error) {
     console.error("Error during registration:", error.message);
     alert("An error occurred during registration. Please try again.");
