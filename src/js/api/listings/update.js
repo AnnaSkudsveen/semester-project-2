@@ -2,12 +2,17 @@ import { headers } from "../headers.js";
 import { API_AUCTION_POSTS } from "../constants.js";
 import { showNavBar } from "../../router/views/navBar.js";
 import { onLogOut } from "../../ui/global/logout.js";
+import { onSearch } from "../../ui/listing/search.js";
 
 window.onLogOut = onLogOut;
 
 const username = localStorage.getItem("author");
-showNavBar(username);
 const editP = document.querySelector(".editP");
+
+showNavBar(username);
+if (searchForm) {
+  searchForm.addEventListener("submit", onSearch);
+}
 
 export async function updateListing(id, title, body, image) {
   const options = {
