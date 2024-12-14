@@ -1,6 +1,9 @@
 import { headers } from "../headers.js";
 import { API_AUCTION_POSTS } from "../constants.js";
 import { showNavBar } from "../../router/views/navBar.js";
+import { onLogOut } from "../../ui/global/logout.js";
+
+window.onLogOut = onLogOut;
 
 const username = localStorage.getItem("author");
 showNavBar(username);

@@ -2,6 +2,8 @@ import { API_AUCTION_PROFILES } from "../../api/constants.js";
 import { headers } from "../../api/headers.js";
 import { onUpdateProfile } from "../../ui/profile/update.js";
 import { showNavBar } from "./navBar.js";
+import { onLogOut } from "../../ui/global/logout.js";
+window.onLogOut = onLogOut;
 
 const username = localStorage.getItem("author");
 showNavBar(username);

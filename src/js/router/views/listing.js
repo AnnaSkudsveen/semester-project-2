@@ -3,6 +3,8 @@ import { API_AUCTION_POSTS } from "../../api/constants";
 import { headers } from "../../api/headers.js";
 import { showNavBar } from "./navBar.js";
 import { updateCountdown } from "../../api/profile/posts.js";
+import { onLogOut } from "../../ui/global/logout.js";
+window.onLogOut = onLogOut;
 
 const bidForm = document.forms.bidModal;
 const bearerToken = localStorage.getItem("bearerToken");

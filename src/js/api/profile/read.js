@@ -1,5 +1,8 @@
 import { API_AUCTION_PROFILES } from "../constants.js";
 import { headers } from "../headers.js";
+import { onLogOut } from "../../ui/global/logout.js";
+
+window.onLogOut = onLogOut;
 
 export async function readProfile(username) {
   const bearerToken = localStorage.getItem("bearerToken");
