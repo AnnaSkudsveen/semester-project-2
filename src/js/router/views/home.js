@@ -63,7 +63,7 @@ if (bearerToken) {
   loginForm.removeEventListener("submit", onLogin);
   registerForm.removeEventListener("submit", onRegister);
 
-  loginForm.style.display = "none";
+  loginModal.style.display = "none";
 
   showUserCredit(username);
 }

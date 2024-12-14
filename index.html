@@ -67,53 +67,53 @@
   </header>
 
   <main class="flex flex-col items-center">
-    <div class="loginModal">
-      <form name="login">
-        <div>
-          <label for="emailLogin">Email</label>
-          <input id="emailLogin" type="email" name="email" required autocomplete="name" />
-        </div>
+    <section class="loginRegisterSection">
 
-        <div>
-          <label for="passwordLogin">Password</label>
-          <input type="password" name="password" id="passwordLogin" required autocomplete="current-password" />
-        </div>
+      <div class="loginModal">
+        <form name="login" class=" flex flex-col items-center md:flex-row gap-2">
+          <label for="emailLogin" class="hidden">Email</label>
+          <input id="emailLogin" type="email" name="email" required autocomplete="name" placeholder="Email"
+            class="h-8" />
 
-        <button id="redirectRegister">Register</button>
-        <button>Login</button>
-      </form>
-    </div>
+          <label for="passwordLogin" class="hidden">Password</label>
+          <input type="password" name="password" id="passwordLogin" required autocomplete="current-password"
+            placeholder="Password" class="h-8" />
 
-    <div class="registerModal">
-      <form name="register" id="registerForm">
-        <div>
-          <label for="nameRegister">Name</label>
+          <button class="bg-primary-600 text-lightText h-8 w-32 rounded">Login</button>
+        </form>
+        <button id="redirectRegister" class="text-primary-500 underline">Not a user? Click here to register</button>
+      </div>
+
+      <div class="registerModal">
+        <form name="register" id="registerForm" class=" flex flex-col items-center md:flex-row gap-2">
+          <label for="nameRegister" class="hidden">Name</label>
           <input id="nameRegister" type="text" name="name" required maxlength="20" pattern="^[\w]+$"
-            title="Please enter a username using only letters and numbers" autocomplete="name" />
-        </div>
+            title="Please enter a username using only letters and numbers" autocomplete="name" placeholder="Username"
+            class="h-8" />
 
-        <div>
-          <label for="emailRegister">Email</label>
+          <label for="emailRegister" class="hidden">Email</label>
           <input id="emailRegister" type="email" name="email" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-            title="Please enter a valid noroff.no or stud.noroff.no address" autocomplete="email" />
-        </div>
+            title="Please enter a valid noroff.no or stud.noroff.no address" autocomplete="email" placeholder="Email"
+            class="h-8" />
 
-        <div>
-          <label for="passwordRegister">Password</label>
+          <label for="passwordRegister" class="hidden">Password</label>
           <input type="password" name="password" id="passwordRegister" required minlength="8"
-            autocomplete="new-password" />
-        </div>
+            autocomplete="new-password" placeholder="Password" class="h-8" />
 
-        <button id="redirectLogin">Login</button>
-        <button id="register">Register</button>
-      </form>
-    </div>
+
+          <button id="register" class="bg-primary-600 text-lightText h-8 w-32 rounded">Register</button>
+        </form>
+        <button id="redirectLogin" class="text-primary-500 underline">Already a user? Click here to log in</button>
+      </div>
+      <p class="loginRegisterP"></p>
+    </section>
+
     <h1 class="font-bold text-xl">Auctions happening now</h1>
     <section class="listingsSection flex flex-wrap gap-2 m-5 justify-center">
 
     </section>
 
-    <section class="paginationSection">
+    <section class="paginationSection flex gap-2 mb-10">
 
     </section>
 

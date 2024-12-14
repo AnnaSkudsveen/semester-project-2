@@ -22,10 +22,20 @@ export function renderPagination(paginatedListings) {
   paginatedListings.forEach((page, index) => {
     const button = document.createElement("button");
     button.textContent = index + 1;
+    button.className =
+      "pagination-button bg-primary-100 text-darkText w-5 rounded-sm hover:border hover:border-primary-600 active:bg-primary-600 active:text-lightText transition";
+
     button.addEventListener("click", () => {
+      document.querySelectorAll(".pagination-button").forEach((btn) => {
+        btn.classList.remove("active");
+      });
+      button.classList.add("active");
       listingsSection.innerHTML = "";
       showListingsPaginated(page);
     });
+    if (index === 0) {
+      button.classList.add("active");
+    }
     pagination.append(button);
   });
 }

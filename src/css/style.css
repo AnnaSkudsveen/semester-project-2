@@ -31,3 +31,7 @@ input, textarea{
   border-radius: 4px;
   padding-left: 8px;
 }
+.pagination-button.active {
+  background-color: var(--primary600);
+  color: #FFFFFF;
+}
