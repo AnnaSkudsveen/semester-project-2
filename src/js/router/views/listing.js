@@ -1,7 +1,7 @@
 import { onBidOnItem } from "../../ui/listing/bid.js";
 import { API_AUCTION_POSTS } from "../../api/constants";
 import { headers } from "../../api/headers.js";
-import { showUserCredit } from "./navBar.js";
+import { showNavBar } from "./navBar.js";
 import { updateCountdown } from "../../api/profile/posts.js";
 
 const bidForm = document.forms.bidModal;
@@ -19,7 +19,7 @@ const smallImgs = document.querySelector(".smallImgs");
 const bigImg = document.querySelector(".bigImg");
 
 bidForm.addEventListener("submit", onBidOnItem);
-showUserCredit(username);
+showNavBar(username);
 
 async function showListing(id) {
   if (!bearerToken) {

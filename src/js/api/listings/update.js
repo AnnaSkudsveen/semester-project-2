@@ -1,6 +1,9 @@
 import { headers } from "../headers.js";
 import { API_AUCTION_POSTS } from "../constants.js";
+import { showNavBar } from "../../router/views/navBar.js";
 
+const username = localStorage.getItem("author");
+showNavBar(username);
 const editP = document.querySelector(".editP");
 
 export async function updateListing(id, title, body, image) {

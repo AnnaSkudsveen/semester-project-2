@@ -2,7 +2,7 @@ import { onLogin } from "../../ui/auth/login.js";
 import { onRegister } from "../../ui/auth/register.js";
 import { API_AUCTION_POSTS } from "../../api/constants.js";
 import { headers } from "../../api/headers.js";
-import { showUserCredit } from "./navBar.js";
+import { showNavBar } from "./navBar.js";
 import {
   paginate,
   renderPagination,
@@ -46,26 +46,15 @@ if (loginModal) {
 
 if (bearerToken) {
   console.log("bearerToken exists");
-  const navBar = document.querySelector(".navBar");
-  const username = localStorage.getItem("author");
-  navBar.innerHTML += `
-  <a href="/html/profile/?user=${username}" class="flex gap-2">
-                <i class="ph ph-user text-xl"></i>
-                <p class="hidden lg:block">Profile</p>
-            </a>
-   
-    <button id="logOutBtn" onclick="onLogOut(event)">Log out</button>
-    `;
 
-  const logOutBtn = document.getElementById("logOutBtn");
-  console.log(logOutBtn);
+  const username = localStorage.getItem("author");
 
   loginForm.removeEventListener("submit", onLogin);
   registerForm.removeEventListener("submit", onRegister);
 
   loginModal.style.display = "none";
 
-  showUserCredit(username);
+  showNavBar(username);
 }
 
 async function getAllPosts() {

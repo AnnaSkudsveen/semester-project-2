@@ -1,5 +1,9 @@
 import { API_AUCTION_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
+import { showNavBar } from "../../router/views/navBar.js";
+
+const username = localStorage.getItem("author");
+showNavBar(username);
 
 const createP = document.querySelector(".createP");
 

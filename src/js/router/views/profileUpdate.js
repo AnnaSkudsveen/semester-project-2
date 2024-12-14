@@ -1,6 +1,10 @@
 import { API_AUCTION_PROFILES } from "../../api/constants.js";
 import { headers } from "../../api/headers.js";
 import { onUpdateProfile } from "../../ui/profile/update.js";
+import { showNavBar } from "./navBar.js";
+
+const username = localStorage.getItem("author");
+showNavBar(username);
 const bearerToken = localStorage.getItem("bearerToken");
 
 const user = localStorage.getItem("author");
@@ -36,7 +40,6 @@ async function getProfile(username) {
 
     form.bio.value = data.data.bio || "";
     form.image.value = data.data.avatar.url || "";
-    form.banner.value = data.data.banner.url || "";
   }
 }
 getProfile(user);
