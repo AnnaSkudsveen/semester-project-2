@@ -3,15 +3,20 @@ import { headers } from "../../api/headers.js";
 import { onUpdateProfile } from "../../ui/profile/update.js";
 import { showNavBar } from "./navBar.js";
 import { onLogOut } from "../../ui/global/logout.js";
+import { onSearch } from "../../ui/listing/search.js";
+
 window.onLogOut = onLogOut;
 
 const username = localStorage.getItem("author");
-showNavBar(username);
 const bearerToken = localStorage.getItem("bearerToken");
-
 const user = localStorage.getItem("author");
 const form = document.forms.updateProfile;
 const profileEditP = document.querySelector(".profileEditP");
+
+showNavBar(username);
+if (searchForm) {
+  searchForm.addEventListener("submit", onSearch);
+}
 
 async function getProfile(username) {
   if (!bearerToken) {

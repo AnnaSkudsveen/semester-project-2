@@ -4,6 +4,7 @@ import { headers } from "../../api/headers.js";
 import { showNavBar } from "./navBar.js";
 import { updateCountdown } from "../../api/profile/posts.js";
 import { onLogOut } from "../../ui/global/logout.js";
+import { onSearch } from "../../ui/listing/search.js";
 window.onLogOut = onLogOut;
 
 const bidForm = document.forms.bidModal;
@@ -22,6 +23,10 @@ const bigImg = document.querySelector(".bigImg");
 
 bidForm.addEventListener("submit", onBidOnItem);
 showNavBar(username);
+
+if (searchForm) {
+  searchForm.addEventListener("submit", onSearch);
+}
 
 async function showListing(id) {
   if (!bearerToken) {
@@ -67,8 +72,8 @@ async function showListing(id) {
     }
 
     listingSection.innerHTML = `
-    <section class="listing w-dvw break-words overflow-hidden">
-          <h2 class="text-xl font-bold overflow-hidden">${listingData.data.title}</h2>
+    <section class="listing break-words">
+          <h2 class="text-xl font-bold break-words">${listingData.data.title}</h2>
           <p class="break-words">${listingData.data.description}</p>
           
       </section>
