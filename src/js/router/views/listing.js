@@ -72,8 +72,8 @@ async function showListing(id) {
     }
 
     listingSection.innerHTML = `
-    <section class="listing w-dvw break-words overflow-hidden">
-          <h2 class="text-xl font-bold overflow-hidden">${listingData.data.title}</h2>
+    <section class="listing break-words">
+          <h2 class="text-xl font-bold break-words">${listingData.data.title}</h2>
           <p class="break-words">${listingData.data.description}</p>
           
       </section>
