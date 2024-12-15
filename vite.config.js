@@ -12,6 +12,9 @@ export default defineConfig({
       listing: resolve(__dirname, "./html/listing/index.html"),
       editListing: resolve(__dirname, "./html/listing/edit/index.html"),
       createListing: resolve(__dirname, "./html/listing/create/index.html")
+    },
+    rollupOptions: {
+      external: ["./src/js/ui/global/logout.js"]
     }
   }
 });
