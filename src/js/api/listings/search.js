@@ -4,6 +4,18 @@ import { updateCountdown } from "../profile/posts.js";
 
 const searchSectionListings = document.getElementById("searchSectionListings");
 
+/**
+ * Searches for auction listings based on the provided query and updates the search results section.
+ *
+ * This function sends a GET request to the API with the search query and retrieves matching auction listings.
+ * If the request is successful, it dynamically populates the search results section with the listings' details.
+ * Additionally, it handles the countdown for auction end times and manages the visibility of the search results dropdown.
+ *
+ * @async
+ * @function search
+ * @param {string} query - The search query entered by the user to filter auction listings.
+ * @throws {Error} Throws an error if the GET request fails or if the response status is not OK.
+ */
 export async function search(query) {
   const options = {
     method: "GET",
@@ -22,9 +34,7 @@ export async function search(query) {
       throw new Error(`Error, status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
 
-    console.log("Search results:", data);
     searchSectionListings.innerHTML = "";
     for (let i = 0; i < data.data.length; i++) {
       searchSectionListings.innerHTML += `
@@ -65,6 +75,6 @@ export async function search(query) {
       setInterval(() => updateCountdown(element, endDate), 1000);
     });
   } catch (error) {
-    console.log("Error fetching search results:", error);
+    console.error("Error fetching search results:", error);
   }
 }
