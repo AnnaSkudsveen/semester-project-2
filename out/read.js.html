@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: read.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: read.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { API_AUCTION_PROFILES } from "../constants.js";
+import { headers } from "../headers.js";
+import { onLogOut } from "../../ui/global/logout.js";
+
+window.onLogOut = onLogOut;
+
+/**
+ * Fetches and displays the profile information of a user based on their username.
+ *
+ * This function retrieves the bearer token from `localStorage`, checks if the user is authenticated,
+ * and then fetches the user's profile data from the API. If the token is missing or invalid, the user is
+ * prompted to log in. Upon successful retrieval of the profile data, it calls the `showProfile` function
+ * to display the profile information.
+ *
+ * @param {string} username - The username of the profile to retrieve.
+ * @returns {void} This function does not return a value, but it triggers a page redirection or updates
+ * the DOM by calling `showProfile` with the retrieved profile data.
+ * @throws {Error} Throws an error if the fetch request fails or if the bearer token is missing.
+ */
+export async function readProfile(username) {
+  const bearerToken = localStorage.getItem("bearerToken");
+
+  if (!bearerToken) {
+    alert("Try logging in");
+    location.replace("/");
+  } else {
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+        ...headers()
+      }
+    };
+
+    const response = await fetch(
+      `${API_AUCTION_PROFILES}/${username}`,
+      options
+    );
+    const data = await response.json();
+    showProfile(data.data);
+  }
+}
+
+/**
+ * Displays the profile information on the page.
+ *
+ * This function dynamically updates the HTML content of the profile section with the user's avatar, name,
+ * bio, and statistics such as credits, listings, and wins. The profile data is expected to be passed as
+ * an object that contains information like `avatar`, `name`, `bio`, `credits`, and counts of `listings` and
+ * `wins` in the user's profile.
+ *
+ * @param {Object} profileData - The profile data of the user to be displayed.
+ * @param {Object} profileData.avatar - The avatar information of the user.
+ * @param {string} profileData.avatar.url - The URL of the avatar image.
+ * @param {string} profileData.name - The name of the user.
+ * @param {string} profileData.bio - The biography of the user.
+ * @param {number} profileData.credits - The number of credits the user has.
+ * @param {Object} profileData._count - Object containing counts for listings and wins.
+ * @param {number} profileData._count.listings - The number of listings the user has created.
+ * @param {number} profileData._count.wins - The number of wins the user has had.
+ * @returns {void} This function does not return a value; it modifies the DOM by injecting profile information.
+ */
+export function showProfile(profileData) {
+  const profileSection = document.querySelector(".profileSection");
+  profileSection.innerHTML += `
+    &lt;div class="flex flex-col items-center">
+    &lt;img src="${profileData.avatar.url}" alt="Profile picture" class="rounded-full w-20 h-20 md:h-28 md:w-28">
+    &lt;h2 class="text-sm font-bold md:text-lg">${profileData.name}&lt;/h2>
+    &lt;p class="text-sm w-60 md:w-80">${profileData.bio}&lt;/p>
+    &lt;/div>
+
+    &lt;section class="flex gap-10">
+      &lt;div class="flex gap-1">
+        &lt;p class="font-bold">${profileData.credits}&lt;/p>
+        &lt;p>Credits&lt;/p>
+      &lt;/div>
+
+      &lt;div class="flex gap-1">
+        &lt;p class="font-bold">${profileData._count.listings}&lt;/p>
+        &lt;p>Listings&lt;/p>
+      &lt;/div>
+
+      &lt;div class="flex gap-1">
+        &lt;p class="font-bold">${profileData._count.wins}&lt;/p>
+        &lt;p>Wins&lt;/p>
+      &lt;/div>
+    &lt;/section>
+      `;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getAllPostsbyUser">getAllPostsbyUser</a></li><li><a href="global.html#readProfile">readProfile</a></li><li><a href="global.html#showPostsWithButtons">showPostsWithButtons</a></li><li><a href="global.html#showProfile">showProfile</a></li><li><a href="global.html#updateCountdown">updateCountdown</a></li><li><a href="global.html#updateProfile">updateProfile</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Dec 15 2024 13:58:13 GMT+0100 (sentraleuropeisk normaltid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

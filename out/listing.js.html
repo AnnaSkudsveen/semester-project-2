@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: listing.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: listing.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { onBidOnItem } from "../../ui/listing/bid.js";
+import { API_AUCTION_POSTS } from "../../api/constants";
+import { headers } from "../../api/headers.js";
+import { showNavBar } from "./navBar.js";
+import { updateCountdown } from "../../api/profile/posts.js";
+import { onLogOut } from "../../ui/global/logout.js";
+import { onSearch } from "../../ui/listing/search.js";
+window.onLogOut = onLogOut;
+
+const bidForm = document.forms.bidModal;
+const bearerToken = localStorage.getItem("bearerToken");
+
+const url = new URL(window.location.href);
+const params = new URLSearchParams(url.search);
+
+const listingId = params.get("id");
+const username = localStorage.getItem("author");
+const listingSection = document.querySelector(".listingSection");
+const listingImages = document.querySelector(".listingImages");
+const bidsSection = document.querySelector(".bidAmounts");
+const smallImgs = document.querySelector(".smallImgs");
+const bigImg = document.querySelector(".bigImg");
+
+bidForm.addEventListener("submit", onBidOnItem);
+showNavBar(username);
+
+if (searchForm) {
+  searchForm.addEventListener("submit", onSearch);
+}
+
+/**
+ * Fetches and displays details of a listing, including its media, description, bids, and countdown timer.
+ *
+ * This function checks if the user is logged in (based on the `bearerToken` in `localStorage`). If the user is not logged in,
+ * they will be redirected to the homepage. If the user is logged in, the function retrieves the details of the specified listing
+ * from the API and displays its content including images, bids, and countdown timer.
+ *
+ * @param {string} id - The ID of the listing to display.
+ *
+ * @throws {Error} Throws an error if the listing data cannot be retrieved or if there is an issue with the API request.
+ *
+ * @example
+ * showListing("12345"); // Fetches and displays details for listing with ID 12345.
+ */
+async function showListing(id) {
+  if (!bearerToken) {
+    alert("You need to be logged in to view this page");
+    location.href = "/";
+  } else {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        ...headers()
+      }
+    };
+
+    const response = await fetch(
+      `${API_AUCTION_POSTS}/${id}?_bids=true`,
+      options
+    );
+    const listingData = await response.json();
+    const media = listingData.data.media;
+
+    if (!media || media.length === 0) {
+      bigImg.innerHTML = "&lt;p>No images available&lt;/p>";
+      smallImgs.innerHTML = "";
+      return;
+    }
+
+    bigImg.innerHTML = `
+      &lt;div class="flex justify-center">
+        &lt;img src="${media[0].url}" alt="Main image" class="w-72 sm:w-96 md:w-[606px] lg:w-[424px]">
+      &lt;/div>
+    `;
+
+    smallImgs.innerHTML = "";
+    for (let i = 1; i &lt; media.length; i++) {
+      smallImgs.innerHTML += `
+        &lt;div class="">
+          &lt;img src="${media[i].url}" alt="" class="h-20 sm:h-44 md:h-32 w-20 sm:w-44 md:w-32 object-cover">
+        &lt;/div>
+      `;
+    }
+
+    listingSection.innerHTML = `
+    &lt;section class="listing break-words">
+          &lt;h2 class="text-xl font-bold break-words">${listingData.data.title}&lt;/h2>
+          &lt;p class="break-words">${listingData.data.description}&lt;/p>
+          
+      &lt;/section>
+    `;
+
+    bidsSection.innerHTML = `
+    &lt;div class="flex flex-col gap-2">
+      &lt;p class="countdown font-bold text-alertRed-700 text-lg" data-end-date="${listingData.data.endsAt}">${listingData.data.endsAt}&lt;/p>
+      &lt;div class="flex gap-1">
+        &lt;p class="font-bold text-base">${listingData.data._count.bids}&lt;/p>
+        &lt;p class="font-bold text-base">Bids on item&lt;/p>
+      &lt;/div>
+    &lt;/div>
+  
+    `;
+
+    listingData.data.bids.forEach((bid) => {
+      bidsSection.innerHTML += `
+      &lt;section class="flex gap-2">
+        &lt;div>
+          &lt;img src="${bid.bidder.avatar.url}" alt="Avatar" class="h-10 w-10 rounded-full object-cover">
+        &lt;/div>
+        &lt;div>
+          &lt;h4 class="text-sm">${bid.bidder.name}&lt;/h4>      
+          &lt;p class="text-sm">&lt;span class="font-bold">${bid.amount}&lt;/span> NOK&lt;/p>
+
+        &lt;/div>
+      &lt;/section>
+      
+          `;
+    });
+    const countdownElement = document.querySelector(".countdown");
+    const endDate = countdownElement.getAttribute("data-end-date");
+    updateCountdown(countdownElement, endDate);
+    setInterval(() => updateCountdown(countdownElement, endDate), 1000);
+  }
+}
+showListing(listingId);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getAllPosts">getAllPosts</a></li><li><a href="global.html#getListing">getListing</a></li><li><a href="global.html#getProfile">getProfile</a></li><li><a href="global.html#showListing">showListing</a></li><li><a href="global.html#showNavBar">showNavBar</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Dec 15 2024 13:58:42 GMT+0100 (sentraleuropeisk normaltid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
