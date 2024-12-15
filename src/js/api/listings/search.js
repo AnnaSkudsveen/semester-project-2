@@ -2,6 +2,8 @@ import { API_AUCTION_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 import { updateCountdown } from "../profile/posts.js";
 
+const searchSectionListings = document.getElementById("searchSectionListings");
+
 export async function search(query) {
   const options = {
     method: "GET",
@@ -22,9 +24,6 @@ export async function search(query) {
     const data = await response.json();
     console.log(data);
 
-    const searchSectionListings = document.getElementById(
-      "searchSectionListings"
-    );
     console.log("Search results:", data);
     searchSectionListings.innerHTML = "";
     for (let i = 0; i < data.data.length; i++) {
@@ -45,6 +44,20 @@ export async function search(query) {
       </a>
       `;
     }
+
+    document.addEventListener("click", (event) => {
+      const searchSection = document.querySelector(".searchSection");
+
+      if (!searchSection.contains(event.target)) {
+        searchSectionListings.classList.add("hidden");
+      }
+    });
+
+    const searchInput = document.getElementById("search");
+    searchInput.addEventListener("focus", () => {
+      searchSectionListings.classList.remove("hidden");
+    });
+
     const countdownElements = document.querySelectorAll(".countdown");
     countdownElements.forEach((element) => {
       const endDate = element.getAttribute("data-end-date");
