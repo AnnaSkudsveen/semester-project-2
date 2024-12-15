@@ -12,7 +12,5 @@ if (searchForm) {
   searchForm.addEventListener("submit", onSearch);
 }
 
-// ?user=hjlpmgtst
-
 readProfile(username);
 getAllPostsbyUser(username);

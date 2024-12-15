@@ -18,9 +18,25 @@ if (searchForm) {
   searchForm.addEventListener("submit", onSearch);
 }
 
+/**
+ * Fetches the profile data for the specified username and populates the profile form with the user's information.
+ *
+ * This function sends a request to retrieve the profile data for a given user, using the provided `username`.
+ * It checks if the user is logged in by verifying the `bearerToken`. If not logged in, the user is redirected
+ * to the login page. Upon successful retrieval, the form fields for bio and avatar image are populated with
+ * the user's profile data. If an error occurs during the fetch request, an error message is displayed.
+ *
+ * @param {string} username - The username of the user whose profile data is to be fetched.
+ *
+ * @throws {Error} Throws an error if the user profile data cannot be fetched or if the request fails.
+ *
+ * @example
+ * getProfile("johndoe"); // Fetches and populates the profile form with the data for the user "johndoe".
+ */
 async function getProfile(username) {
   if (!bearerToken) {
-    console.log("Try logging in");
+    alert("Try logging in");
+    location.href = "/";
   } else {
     const options = {
       method: "GET",

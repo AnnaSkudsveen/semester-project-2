@@ -28,10 +28,24 @@ if (searchForm) {
   searchForm.addEventListener("submit", onSearch);
 }
 
+/**
+ * Fetches and displays details of a listing, including its media, description, bids, and countdown timer.
+ *
+ * This function checks if the user is logged in (based on the `bearerToken` in `localStorage`). If the user is not logged in,
+ * they will be redirected to the homepage. If the user is logged in, the function retrieves the details of the specified listing
+ * from the API and displays its content including images, bids, and countdown timer.
+ *
+ * @param {string} id - The ID of the listing to display.
+ *
+ * @throws {Error} Throws an error if the listing data cannot be retrieved or if there is an issue with the API request.
+ *
+ * @example
+ * showListing("12345"); // Fetches and displays details for listing with ID 12345.
+ */
 async function showListing(id) {
   if (!bearerToken) {
     alert("You need to be logged in to view this page");
-    window.location.href = "/";
+    location.href = "/";
   } else {
     const options = {
       method: "GET",
@@ -46,8 +60,6 @@ async function showListing(id) {
       options
     );
     const listingData = await response.json();
-    console.log(listingData);
-
     const media = listingData.data.media;
 
     if (!media || media.length === 0) {

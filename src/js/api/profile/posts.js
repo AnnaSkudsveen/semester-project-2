@@ -3,6 +3,18 @@ import { headers } from "../headers.js";
 
 const myListings = document.querySelector(".myListings");
 
+/**
+ * Fetches all auction listings posted by a specific user.
+ *
+ * This function sends a GET request to retrieve all auction listings by a user, identified by the `username`.
+ * If the request is successful, the listings are passed to a function to display them.
+ * If the request fails, an error is logged to the console.
+ *
+ * @async
+ * @function getAllPostsbyUser
+ * @param {string} username - The username of the user whose auction listings are to be retrieved.
+ * @throws {Error} Throws an error if the GET request fails or the response status is not OK.
+ */
 export async function getAllPostsbyUser(username) {
   try {
     const options = {
@@ -20,13 +32,23 @@ export async function getAllPostsbyUser(username) {
       throw new Error(`Error, status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
     showPostsWithButtons(data);
   } catch (error) {
     console.error("An error has occurred:", error.message);
   }
 }
 
+/**
+ * Updates the countdown display for an auction.
+ *
+ * This function calculates the remaining time until the specified `endDate` and updates the text content of
+ * the provided `element` to show the countdown in the format "Xd Xh Xm Xs". If the auction has ended,
+ * it updates the text content to "Auction ended".
+ *
+ * @param {HTMLElement} element - The DOM element where the countdown will be displayed.
+ * @param {string|Date} endDate - The end date of the auction, which can be a string in a valid date format
+ * or a Date object.
+ */
 export async function updateCountdown(element, endDate) {
   const endsAt = new Date(`${endDate}`);
   const now = new Date();
@@ -45,6 +67,28 @@ export async function updateCountdown(element, endDate) {
   element.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
+/**
+ * Displays a list of auction posts with bidding information and a countdown.
+ *
+ * This function takes in a list of auction posts and dynamically generates HTML to display each post, including:
+ * - The post's media (image)
+ * - The number of bids placed on the post
+ * - The title of the post
+ * - A countdown timer showing the time remaining for the auction
+ * - A link to edit the post (visible in the layout but hidden by default)
+ *
+ * It also sets up a countdown timer for each post, updating the time left until the auction ends.
+ *
+ * @param {Object} postData - The data of auction posts to be displayed.
+ * @param {Array} postData.data - An array of auction posts.
+ * @param {Object} postData.data[i] - An individual auction post object.
+ * @param {string} postData.data[i].id - The unique ID of the auction post.
+ * @param {Object} postData.data[i].media - Media associated with the auction post.
+ * @param {string} postData.data[i].media[0].url - The URL of the image associated with the post.
+ * @param {number} postData.data[i]._count.bids - The number of bids on the auction post.
+ * @param {string} postData.data[i].title - The title of the auction post.
+ * @param {string} postData.data[i].endsAt - The end date of the auction in ISO format (e.g., "2024-12-31T23:59:59").
+ */
 export function showPostsWithButtons(postData) {
   myListings.innerHTML = "";
 

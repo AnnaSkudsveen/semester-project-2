@@ -12,9 +12,24 @@ const imageDiv = document.getElementById("editListingImageDiv");
 const deleteBtn = document.getElementById("deleteBtnEdit");
 const editP = document.querySelector(".editP");
 
+/**
+ * Fetches and displays the details of a listing for editing.
+ *
+ * This function retrieves the details of a specific listing by its ID and populates a form with the listing's data, including
+ * title, description, tags, and images. It also handles the scenario where no images are available for the listing.
+ * If the user is not logged in (i.e., no `bearerToken` is found), they are redirected to the homepage.
+ *
+ * @param {string} id - The ID of the listing to retrieve and populate into the form.
+ *
+ * @throws {Error} Throws an error if the listing data cannot be retrieved or if there is an issue with the API request.
+ *
+ * @example
+ * getListing("12345"); // Fetches and displays the details of the listing with ID 12345 in the edit form.
+ */
 async function getListing(id) {
   if (!bearerToken) {
-    console.log("Try logging in");
+    alert("Try logging in");
+    location.href = "/";
   } else {
     const options = {
       method: "GET",
@@ -26,7 +41,6 @@ async function getListing(id) {
 
     const response = await fetch(`${API_AUCTION_POSTS}/${id}`, options);
     const data = await response.json();
-    console.log(data);
 
     form.title.value = data.data.title || "";
     form.body.value = data.data.description || "";
