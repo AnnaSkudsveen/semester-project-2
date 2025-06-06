@@ -1,6 +1,6 @@
 import { readProfile } from "../../api/profile/read.js";
 import { getAllPostsbyUser } from "../../api/profile/posts.js";
-import { onLogOut } from "../../ui/global/logout.js";
+import { onLogOut } from "../../ui/global/logOut.js";
 import { showNavBar } from "./navBar.js";
 import { onSearch } from "../../ui/listing/search.js";
 

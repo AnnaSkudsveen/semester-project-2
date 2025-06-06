@@ -2,7 +2,7 @@ import { API_AUCTION_PROFILES } from "../../api/constants.js";
 import { headers } from "../../api/headers.js";
 import { onUpdateProfile } from "../../ui/profile/update.js";
 import { showNavBar } from "./navBar.js";
-import { onLogOut } from "../../ui/global/logout.js";
+import { onLogOut } from "../../ui/global/logOut.js";
 import { onSearch } from "../../ui/listing/search.js";
 
 window.onLogOut = onLogOut;

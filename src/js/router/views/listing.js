@@ -3,7 +3,7 @@ import { API_AUCTION_POSTS } from "../../api/constants";
 import { headers } from "../../api/headers.js";
 import { showNavBar } from "./navBar.js";
 import { updateCountdown } from "../../api/profile/posts.js";
-import { onLogOut } from "../../ui/global/logout.js";
+import { onLogOut } from "../../ui/global/logOut.js";
 import { onSearch } from "../../ui/listing/search.js";
 window.onLogOut = onLogOut;
 
