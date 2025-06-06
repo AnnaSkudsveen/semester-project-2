@@ -1,6 +1,6 @@
 import { API_AUCTION_PROFILES } from "../constants.js";
 import { headers } from "../headers.js";
-import { onLogOut } from "../../ui/global/logout.js";
+import { onLogOut } from "../../ui/global/logOut.js";
 
 window.onLogOut = onLogOut;
 

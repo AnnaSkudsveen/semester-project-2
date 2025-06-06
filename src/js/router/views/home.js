@@ -9,7 +9,7 @@ import {
   showListingsPaginated
 } from "../../ui/global/pagination.js";
 import { onSearch } from "../../ui/listing/search.js";
-import { onLogOut } from "../../ui/global/logout.js";
+import { onLogOut } from "../../ui/global/logOut.js";
 
 window.onLogOut = onLogOut;
 

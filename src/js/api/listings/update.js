@@ -1,7 +1,7 @@
 import { headers } from "../headers.js";
 import { API_AUCTION_POSTS } from "../constants.js";
 import { showNavBar } from "../../router/views/navBar.js";
-import { onLogOut } from "../../ui/global/logout.js";
+import { onLogOut } from "../../ui/global/logOut.js";
 import { onSearch } from "../../ui/listing/search.js";
 
 window.onLogOut = onLogOut;
